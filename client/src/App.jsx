@@ -7,11 +7,8 @@ const App = () => {
 
   return (
     <div className="min-h-screen">
-    <div className= "bg-slate-500">
-      <Navbar />
-     
-    </div>
-   
+    <Navbar />
+    
     
   </div>
   );
