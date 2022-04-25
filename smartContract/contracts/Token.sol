@@ -1,44 +1,47 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts@4.5.0/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts@4.5.0/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts@4.5.0/access/Ownable.sol";
+import "@openzeppelin/contracts@4.5.0/utils/Counters.sol";
 
 contract Token is ERC721, Ownable {
     using Counters for Counters.Counter;
+    IERC20 public eggTokenAddr;
+    uint256 public mintRate = 100 * 10 ** 18;
+    uint256 public feedRate = 10 * 10 ** 18;
 
     Counters.Counter private _tokenIdCounter;
-    
-    struct Chicken{
+    mapping (uint256 => Chicken) public chickenMap;
+    uint256 HUNGER = 86400; //seconds = 1 Day
+
+    struct Chicken {
         string name;
         uint256 lastMeal;
         uint256 hunger; //24 hours without food
         uint8 rarity;
     }
 
-    mapping( uint256 => Chicken) private _tokenDetails;
-    
-    constructor() ERC721("Chicken", "CHK") {}
+    constructor(address _eggTokenAddr) ERC721("chickenMap", "CHK") {
+        eggTokenAddr = IERC20(_eggTokenAddr);
+    }
 
-    function safeMint(string memory name,uint256 hunger, uint8 rarity) public onlyOwner {
+    function safeMint(string memory name, uint8 rarity) public {
+        eggTokenAddr.transferFrom(msg.sender,address(this),mintRate);
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
-        _tokenDetails[tokenId] = Chicken(name,block.timestamp,hunger,rarity);
+        chickenMap[tokenId] = Chicken(name,block.timestamp,HUNGER,rarity);
         _safeMint(msg.sender, tokenId);
-
     }
 
     function feed(uint256 tokenId) public {
-        Chicken storage chicken = _tokenDetails[tokenId];
+        require(ownerOf(tokenId) ==  msg.sender);
+        eggTokenAddr.transferFrom(msg.sender,address(this),feedRate);
+        Chicken storage chicken = chickenMap[tokenId];
         require(chicken.lastMeal + chicken.hunger > block.timestamp);
-        _tokenDetails[tokenId].lastMeal = block.timestamp;
+        chickenMap[tokenId].lastMeal = block.timestamp;
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal override {
-        Chicken storage chicken = _tokenDetails[tokenId];
-        require(chicken.lastMeal + chicken.hunger > block.timestamp);
-
-    }
 
 }
