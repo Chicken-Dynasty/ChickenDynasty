@@ -15,12 +15,15 @@ contract Token is ERC721, Ownable {
     Counters.Counter private _tokenIdCounter;
     mapping (uint256 => Chicken) public chickenMap;
     uint256 HUNGER = 86400; //seconds = 1 Day
+    uint256 CLAIMABLE = 86400; //seconds = 1 Day
 
     struct Chicken {
         string name;
+        uint8 rarity;
         uint256 lastMeal;
         uint256 hunger; //24 hours without food
-        uint8 rarity;
+        uint256 lastClaim;
+
     }
 
     constructor(address _eggTokenAddr) ERC721("chickenMap", "CHK") {
@@ -28,10 +31,10 @@ contract Token is ERC721, Ownable {
     }
 
     function safeMint(string memory name, uint8 rarity) public {
-        eggTokenAddr.transferFrom(msg.sender,address(this),mintRate);
+        eggTokenAddr.transferFrom(msg.sender,address(this),mintRate,block.timestamp);
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
-        chickenMap[tokenId] = Chicken(name,block.timestamp,HUNGER,rarity);
+        chickenMap[tokenId] = Chicken(name,rarity,block.timestamp,HUNGER,block.timestamp);
         _safeMint(msg.sender, tokenId);
     }
 
@@ -41,6 +44,14 @@ contract Token is ERC721, Ownable {
         Chicken storage chicken = chickenMap[tokenId];
         require(chicken.lastMeal + chicken.hunger > block.timestamp);
         chickenMap[tokenId].lastMeal = block.timestamp;
+    }
+
+    function claimReward(uint256 tokenId) public {
+        require(ownerOf(tokenId) ==  msg.sender);
+        Chicken storage chicken = chickenMap[tokenId];
+        require(chicken.lastClaim + CLAIMABLE < block.timestamp);
+        //WIP
+
     }
 
 
