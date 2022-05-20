@@ -1,16 +1,15 @@
-import { useState,useContext} from 'react';
+import React,{ useState,useContext} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Navbar } from "./components";
-import { TrasactionContext } from './context/transactionContext';
+import { Navbar} from "./components";
+import { TransactionContext } from './context/transactionContext';
+import Hatch from './components/Hatch';
 const App = () => {
-  const [count, setCount] = useState(0);
-  const { connectWallet} = useContext(TrasactionContext);
 
   return (
     <div className="min-h-screen">
     <Navbar />
-    
+    <Hatch />
   </div>
   );
 }
