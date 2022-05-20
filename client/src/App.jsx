@@ -4,13 +4,21 @@ import './App.css';
 import { Navbar} from "./components";
 import { TransactionContext } from './context/transactionContext';
 import Hatch from './components/Hatch';
+import {BrowserRouter as Router,Route,Link, Routes} from "react-router-dom";
+import Welcome from './components/Welcome';
 const App = () => {
 
   return (
-    <div className="min-h-screen">
-    <Navbar />
-    <Hatch />
-  </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/hatch" element={<Hatch />} />
+        <Route path="/home" element={<Welcome />} />
+        <Route path="/" element={<Welcome />} />
+
+      </Routes>
+    </Router>
+
   );
 }
 

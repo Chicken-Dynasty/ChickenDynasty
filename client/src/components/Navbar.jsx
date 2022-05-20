@@ -2,6 +2,8 @@ import React,{useContext, useState} from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { TransactionContext } from "../context/transactionContext";
+import {Link} from "react-router-dom";
+
 // import logo from "../../images/logo.png";
 
 const Navbar = () => {
@@ -49,6 +51,7 @@ const Navbar = () => {
                     <p className="text-2xl leading-6 text-white">Chicken Dynasty</p>
                 </div>
                 <div className="mt-6 flex flex-col justify-start items-center  pl-4 w-full border-gray-600 border-b space-y-3 pb-5 ">
+                    <Link to ="/" className="mt-6 flex flex-col justify-start items-center  pl-4 w-full space-y-3 pb-5">
                     <button className="flex jusitfy-start items-center space-x-6 w-full  focus:outline-none  focus:text-pink-400  text-white rounded ">
                         <svg className="fill-stroke " width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 4H5C4.44772 4 4 4.44772 4 5V9C4 9.55228 4.44772 10 5 10H9C9.55228 10 10 9.55228 10 9V5C10 4.44772 9.55228 4 9 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -58,13 +61,17 @@ const Navbar = () => {
                         </svg>
                         <p className="text-base leading-4 ">Home</p>
                     </button>
+                    </Link>
+                    <Link to="/hatch" className="mt-6 flex flex-col justify-start items-center  pl-4 w-full space-y-3 pb-5">
                     <button className="flex jusitfy-start items-center w-full  space-x-6 focus:outline-none text-white focus:text-pink-400   rounded ">
                         <svg className="fill-stroke" width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             <path d="M6 21V19C6 17.9391 6.42143 16.9217 7.17157 16.1716C7.92172 15.4214 8.93913 15 10 15H14C15.0609 15 16.0783 15.4214 16.8284 16.1716C17.5786 16.9217 18 17.9391 18 19V21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <p className="text-base leading-4 ">Hatch Egg</p>
+                        
                     </button>
+                    </Link>
                 </div>
                
             </div>
