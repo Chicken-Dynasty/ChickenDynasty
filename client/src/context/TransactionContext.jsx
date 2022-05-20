@@ -11,7 +11,7 @@ const getEthereumContract = () => {
 
 }
 
-export const TransactionProvider = ({children}) => {
+export const TransactionsProvider = ({children}) => {
 
     const [currentAccount, setCurrentAccount] = useState("");
 

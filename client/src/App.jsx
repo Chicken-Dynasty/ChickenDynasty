@@ -2,13 +2,14 @@ import React,{ useState,useContext} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Navbar} from "./components";
-import { TransactionContext } from './context/transactionContext';
+import { TransactionsProvider } from './context/transactionContext';
 import Hatch from './components/Hatch';
 import {BrowserRouter as Router,Route,Link, Routes} from "react-router-dom";
 import Welcome from './components/Welcome';
 const App = () => {
 
   return (
+    <TransactionsProvider>
     <Router>
       <Navbar />
       <Routes>
@@ -18,7 +19,7 @@ const App = () => {
 
       </Routes>
     </Router>
-
+    </TransactionsProvider>
   );
 }
 
