@@ -1,14 +1,22 @@
 import React,{useEffect,useState,Component} from "react";
 import { ethers} from "ethers";
+import tokenABI from "../tokenABI.json";
 
 export const TransactionContext = React.createContext();
 
 const {ethereum} = window;
 
+const tokenContractAddress = "0x682E3A10BeC3d0BeF84c8B5E518ce821193EEC0E";
+
 const getEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
-
+    const contract = new ethers.Contract(
+        tokenContractAddress,
+        tokenABI,
+        signer
+    );
+    return contract;
 }
 
 export const TransactionsProvider = ({children}) => {
@@ -37,6 +45,19 @@ export const TransactionsProvider = ({children}) => {
           throw new Error("No ethereum object");
         }
       };
+    
+    const mintNFT = async () => {
+        if(window.ethereum){
+            contract = getEthereumContract()
+            try {
+                const response = await contract.safeMint("kai");
+                console.log('response: ', response);
+
+            } catch (error) {
+                console.log("error: ", error)
+            }
+        }
+    }
 
     useEffect(() => {
         checkIfWalletIsConnected();
@@ -44,7 +65,9 @@ export const TransactionsProvider = ({children}) => {
 
     return (
         
-        <TransactionContext.Provider value={{connectWallet,currentAccount}}>
+        <TransactionContext.Provider value={{connectWallet,
+        currentAccount,
+        mintNFT}}>
             {children}
         </TransactionContext.Provider>
     );

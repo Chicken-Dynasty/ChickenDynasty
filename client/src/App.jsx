@@ -16,9 +16,9 @@ const App = () => {
         <Route path="/hatch" element={<Hatch />} />
         <Route path="/home" element={<Welcome />} />
         <Route path="/" element={<Welcome />} />
-
       </Routes>
     </Router>
+      
     </TransactionsProvider>
   );
 }
