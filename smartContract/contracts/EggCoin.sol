@@ -5,6 +5,6 @@ import "@openzeppelin/contracts@4.5.0/token/ERC20/ERC20.sol";
 
 contract Egg is ERC20 {
     constructor() ERC20("Egg", "EGG") {
-        _mint(msg.sender, 10000 * 10 ** decimals());
+        _mint(msg.sender, 1000000 * 10 ** decimals());
     }
 }

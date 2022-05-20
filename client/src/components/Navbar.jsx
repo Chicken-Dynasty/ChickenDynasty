@@ -16,7 +16,7 @@ const Navbar = () => {
         newArr[props] = !newArr[props];
         setMenu(newArr);
     }
-    const {connectWallet} = useContext(TransactionContext);
+    const {connectWallet,currentAccount} = useContext(TransactionContext);
     
 
 
