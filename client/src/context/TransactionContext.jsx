@@ -15,6 +15,8 @@ export const TransactionsProvider = ({children}) => {
     const tokenData = [];
     const [currentAccount, setCurrentAccount] = useState("");
     const [wheatBalance, setWheatBalance] = useState("");
+    const [wheatInputAmount, setWheatInputAmount] = useState("");
+
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const tokenContract = new ethers.Contract(
@@ -28,6 +30,10 @@ export const TransactionsProvider = ({children}) => {
         eggABI,
         signer
     );
+
+    const handleWheatAmountInput = (e) => {
+        setWheatInputAmount(e.target.value);
+    }
 
 
 
@@ -76,7 +82,8 @@ export const TransactionsProvider = ({children}) => {
     const buyWheat = async () => {
         if(window.ethereum){
             try {
-                const response = await tokenContract.buyWheat(BigInt(1));
+                console.log(wheatInputAmount);
+                const response = await tokenContract.buyWheat(BigInt(wheatInputAmount));
                 console.log('response: ', response);
 
             } catch (error) {
@@ -142,9 +149,6 @@ export const TransactionsProvider = ({children}) => {
 
     useEffect(() => {
         checkIfWalletIsConnected();
-        
-        
-
     },[]);
 
     return (
@@ -154,6 +158,10 @@ export const TransactionsProvider = ({children}) => {
         mintNFT,
         displayNFTByAddress,
         buyWheat,
+        wheatInputAmount,
+        setWheatInputAmount,
+        handleWheatAmountInput,
+
         }}>
             {children}
         </TransactionContext.Provider>
