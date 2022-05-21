@@ -12,7 +12,8 @@ const eggContractAddress = "0xed4f4d1DF8C1e3f6F9dFFB591382Bb4642E227E5";
 
 
 export const TransactionsProvider = ({children}) => {
-    const tokenData = [];
+    const temp = [];
+    const [tokenData, setTokenData] = useState([]);
     const [currentAccount, setCurrentAccount] = useState("");
     const [wheatBalance, setWheatBalance] = useState("");
     const provider = new ethers.providers.Web3Provider(ethereum);
@@ -115,10 +116,11 @@ export const TransactionsProvider = ({children}) => {
                 
                 for (const index in nftAtIndex) {
                     const response = await tokenContract.chickenMap(BigInt(index));
-                    tokenData[index] = (response);
+                    temp[index] = (response);
                 }
                 
-                console.log(tokenData);
+                console.log(temp);
+                setTokenData(temp);
                 
                 
             } catch(error) {
@@ -154,6 +156,7 @@ export const TransactionsProvider = ({children}) => {
         mintNFT,
         displayNFTByAddress,
         buyWheat,
+        tokenData,
         }}>
             {children}
         </TransactionContext.Provider>
