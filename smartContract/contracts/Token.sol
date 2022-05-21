@@ -25,6 +25,7 @@ contract Token is ERC721,ERC721Enumerable, Ownable {
         uint rarity;
         uint256 lastClaim;
         uint256 claimModifier;
+        uint256 chickenId;
 
     }
 
@@ -38,7 +39,7 @@ contract Token is ERC721,ERC721Enumerable, Ownable {
         _tokenIdCounter.increment();
         uint rarity = randRarity();
         uint claimModifier = checkClaimMod(rarity);
-        chickenMap[tokenId] = Chicken(name,rarity,block.timestamp,claimModifier);
+        chickenMap[tokenId] = Chicken(name,rarity,block.timestamp,claimModifier,tokenId);
         _safeMint(msg.sender, tokenId);
     }
 

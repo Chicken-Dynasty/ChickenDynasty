@@ -3,7 +3,8 @@ import { TransactionContext } from "../context/transactionContext";
 
 
 
-const Card = ({name,rarity,lastClaim,claimModifier}) => {
+const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
+    const {setChickenId,chickenIdIndex,collectEgg} = useContext(TransactionContext);
     let imageSrc = "";
     switch(Number(rarity)){
         case 0 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png"; break;
@@ -11,6 +12,11 @@ const Card = ({name,rarity,lastClaim,claimModifier}) => {
         case 2 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807905026128/Untitled1_20220329222159.png"; break;
         case 3 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394808135725076/Untitled2_20220329222030.png"; break;
         default : imageSrc = ""
+    }
+    const callCollectEggContract = () => {
+
+        collectEgg(Number(chickenId));
+
     }
 
     return(        
@@ -28,7 +34,7 @@ const Card = ({name,rarity,lastClaim,claimModifier}) => {
             <img src={imageSrc}
                 className="w-full h-128 2x:h-96 rounded-md shadow-lg object-cover"></img>
             <div>
-                <button className="rounded-full border-2 bg-yellow-300 hover:bg-yellow-400">Collect Egg</button>
+                <button className="rounded-full border-2 bg-yellow-300 hover:bg-yellow-400" onClick={callCollectEggContract}>Collect Egg</button>
             </div>
 
         </div>
@@ -43,7 +49,7 @@ const ChickenCard = () => {
         console.log("Run fetch Data")
         displayNFTByAddress()// action here
     }, [tokenData.length]);
-    
+
     return(
         <div>
             <div>
