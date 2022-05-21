@@ -7,17 +7,8 @@ export const TransactionContext = React.createContext();
 const {ethereum} = window;
 
 const tokenContractAddress = "0x2AeF139E269393111C9325ab502d3c77cC78b72E";
+const eggContractAddress = "0xed4f4d1DF8C1e3f6F9dFFB591382Bb4642E227E5";
 
-const getEthereumContract = () => {
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(
-        tokenContractAddress,
-        tokenABI,
-        signer
-    );
-    return contract;
-}
 
 export const TransactionsProvider = ({children}) => {
     const tokenData = [];
@@ -25,11 +16,19 @@ export const TransactionsProvider = ({children}) => {
     const [wheatBalance, setWheatBalance] = useState("");
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(
+    const tokenContract = new ethers.Contract(
         tokenContractAddress,
         tokenABI,
         signer
     );
+
+    const eggCoinContract = new ethers.Contract(
+        eggContractAddress,
+        tokenABI,
+        signer
+    );
+
+
 
     const checkIfWalletIsConnected = async () => {
         if(!ethereum) return alert("Please install metamask");
@@ -59,7 +58,10 @@ export const TransactionsProvider = ({children}) => {
     const mintNFT = async () => {
         if(window.ethereum){
             try {
-                const response = await contract.safeMint("kai");
+                const approval = await eggCoinContract.approve(currentAccount,BigInt(100000));
+                await approval.wait();
+                // wait() has the logic to return receipt once the transaction is mined
+                const response = await tokenContract.safeMint("kai");
                 console.log('response: ', response);
 
             } catch (error) {
@@ -71,7 +73,7 @@ export const TransactionsProvider = ({children}) => {
     const buyWheat = async () => {
         if(window.ethereum){
             try {
-                const response = await contract.buyWheat(BigInt(1));
+                const response = await tokenContract.buyWheat(BigInt(1));
                 console.log('response: ', response);
 
             } catch (error) {
@@ -84,18 +86,18 @@ export const TransactionsProvider = ({children}) => {
         if(window.ethereum){
             try{
                 
-                const balance = await contract.balanceOf(currentAccount);
+                const balance = await tokenContract.balanceOf(currentAccount);
                 // console.log('response: ', Number(balance));
 
                 const nftAtIndex = [];
                 for (let index = 0; index < balance; index++) {
-                    const response = await contract.tokenOfOwnerByIndex(currentAccount,BigInt(index));  //Will return the index of the NFT inside the contract.
+                    const response = await tokenContract.tokenOfOwnerByIndex(currentAccount,BigInt(index));  //Will return the index of the NFT inside the tokenContract.
                     nftAtIndex.push(response);
                 }
                 // console.log(nftAtIndex);
                 
                 for (const index in nftAtIndex) {
-                    const response = await contract.chickenMap(BigInt(index));
+                    const response = await tokenContract.chickenMap(BigInt(index));
                     tokenData[index] = (response);
                 }
                 
@@ -111,7 +113,7 @@ export const TransactionsProvider = ({children}) => {
     const checkWheatAmount = async () => {
         if(window.ethereum){
             try{
-                const response = await contract.wheatInventory(currentAccount);
+                const response = await tokenContract.wheatInventory(currentAccount);
                 setWheatBalance(Number(response));
                 console.log(wheatBalance);
             }
@@ -124,7 +126,6 @@ export const TransactionsProvider = ({children}) => {
     useEffect(() => {
         if(checkIfWalletIsConnected()){
             displayNFTByAddress;
-
         }
 
     },[]);
