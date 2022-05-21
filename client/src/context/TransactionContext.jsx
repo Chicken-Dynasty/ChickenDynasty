@@ -20,8 +20,9 @@ const getEthereumContract = () => {
 }
 
 export const TransactionsProvider = ({children}) => {
-
+    const tokenData = [];
     const [currentAccount, setCurrentAccount] = useState("");
+    const [wheatBalance, setWheatBalance] = useState("");
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
@@ -35,7 +36,9 @@ export const TransactionsProvider = ({children}) => {
 
         const accounts = await ethereum.request({method: 'eth_accounts'});
 
-        console.log(accounts);
+        // console.log(accounts);
+        setCurrentAccount(accounts[0]);
+
     }
 
     const connectWallet = async () => {
@@ -65,15 +68,76 @@ export const TransactionsProvider = ({children}) => {
         }
     }
 
+    const buyWheat = async () => {
+        if(window.ethereum){
+            try {
+                const response = await contract.buyWheat(BigInt(1));
+                console.log('response: ', response);
+
+            } catch (error) {
+                console.log("error: ", error)
+            }
+        }
+    }
+
+    const displayNFTByAddress = async () => {
+        if(window.ethereum){
+            try{
+                
+                const balance = await contract.balanceOf(currentAccount);
+                // console.log('response: ', Number(balance));
+
+                const nftAtIndex = [];
+                for (let index = 0; index < balance; index++) {
+                    const response = await contract.tokenOfOwnerByIndex(currentAccount,BigInt(index));  //Will return the index of the NFT inside the contract.
+                    nftAtIndex.push(response);
+                }
+                // console.log(nftAtIndex);
+                
+                for (const index in nftAtIndex) {
+                    const response = await contract.chickenMap(BigInt(index));
+                    tokenData[index] = (response);
+                }
+                
+                console.log(tokenData);
+                
+                
+            } catch(error) {
+                console.log("error: ", error)
+            }
+        }
+    }
+
+    const checkWheatAmount = async () => {
+        if(window.ethereum){
+            try{
+                const response = await contract.wheatInventory(currentAccount);
+                setWheatBalance(Number(response));
+                console.log(wheatBalance);
+            }
+            catch(error){
+                console.log("error: ", error);
+            }
+        }
+    }
+
     useEffect(() => {
-        checkIfWalletIsConnected();
+        if(checkIfWalletIsConnected()){
+            displayNFTByAddress;
+
+        }
+
     },[]);
 
     return (
         
         <TransactionContext.Provider value={{connectWallet,
         currentAccount,
-        mintNFT}}>
+        mintNFT,
+        displayNFTByAddress,
+        buyWheat,
+
+        }}>
             {children}
         </TransactionContext.Provider>
     );

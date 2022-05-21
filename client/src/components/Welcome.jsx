@@ -1,10 +1,14 @@
-import React,{useState} from "react";
+import React,{useState,useContext} from "react";
+import { TransactionContext } from "../context/transactionContext";
 
 const Welcome = () => {
-    console.log("Home page");
-    return (
-        <div className=" absolute top-0 right-0 px-20 py-5">
-            Hello 
+    const {connectWallet,currentAccount,displayNFTByAddress} = useContext(TransactionContext);
+    console.log("home page");
+
+    
+    return(
+        <div className="grid place-items-center h-screen">
+            <button className="border-1" onClick={displayNFTByAddress}>Display NFT</button>
         </div>
     );
 };

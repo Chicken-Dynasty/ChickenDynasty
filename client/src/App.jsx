@@ -6,6 +6,7 @@ import { TransactionsProvider } from './context/transactionContext';
 import Hatch from './components/Hatch';
 import {BrowserRouter as Router,Route,Link, Routes} from "react-router-dom";
 import Welcome from './components/Welcome';
+import Wheat from './components/Wheat';
 const App = () => {
 
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Routes>
         <Route path="/hatch" element={<Hatch />} />
         <Route path="/home" element={<Welcome />} />
+        <Route path="/wheat" element={<Wheat />} />
         <Route path="/" element={<Welcome />} />
       </Routes>
     </Router>
