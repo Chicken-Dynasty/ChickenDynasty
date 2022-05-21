@@ -1,5 +1,7 @@
-import React,{ useContext } from "react";
+import React,{ useEffect,useContext } from "react";
 import { TransactionContext } from "../context/transactionContext";
+
+
 
 const Card = ({name,rarity,lastClaim,claimModifier}) => {
     return(        
@@ -26,7 +28,13 @@ const Card = ({name,rarity,lastClaim,claimModifier}) => {
     );
 }
 const ChickenCard = () => {
-    const {currentAccount,tokenData} = useContext(TransactionContext);
+    const {currentAccount,tokenData,displayNFTByAddress} = useContext(TransactionContext);
+
+    useEffect(() => {
+        console.log("Run fetch Data")
+        displayNFTByAddress()// action here
+    }, [tokenData.length]);
+    
     return(
         <div>
             <div>
