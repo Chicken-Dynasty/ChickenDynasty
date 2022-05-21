@@ -12,7 +12,7 @@ const Welcome = () => {
         displayNFTByAddress()// action here
     }, [tokenData.length]);
     return(
-        <div className="grid place-items-center h-screen">
+        <div className="grid place-items-center h-screen bg-farm">
             <button className="border-1" onClick={displayNFTByAddress}>Display NFT</button>
             <ul>
             {
