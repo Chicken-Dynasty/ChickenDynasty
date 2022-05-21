@@ -35,9 +35,9 @@ export const TransactionsProvider = ({children}) => {
         if(!ethereum) return alert("Please install metamask");
 
         const accounts = await ethereum.request({method: 'eth_accounts'});
-
         // console.log(accounts);
         setCurrentAccount(accounts[0]);
+
 
     }
 
@@ -140,9 +140,9 @@ export const TransactionsProvider = ({children}) => {
     }
 
     useEffect(() => {
-        if(checkIfWalletIsConnected()){
-            displayNFTByAddress;
-        }
+        checkIfWalletIsConnected();
+        
+        
 
     },[]);
 
@@ -153,8 +153,6 @@ export const TransactionsProvider = ({children}) => {
         mintNFT,
         displayNFTByAddress,
         buyWheat,
-        approveToken,
-
         }}>
             {children}
         </TransactionContext.Provider>
