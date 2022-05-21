@@ -58,8 +58,10 @@ export const TransactionsProvider = ({children}) => {
     const mintNFT = async () => {
         if(window.ethereum){
             try {
-                const approval = await eggCoinContract.approve(currentAccount,BigInt(100000));
-                await approval.wait();
+                const tokenApproval = await eggCoinContract.approve(tokenContractAddress,BigInt(10000));
+                await tokenApproval.wait();
+                const eggCoinapproval = await eggCoinContract.approve(currentAccount,BigInt(10000));
+                await eggCoinapproval.wait();
                 // wait() has the logic to return receipt once the transaction is mined
                 const response = await tokenContract.safeMint("kai");
                 console.log('response: ', response);
