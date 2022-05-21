@@ -6,7 +6,7 @@ export const TransactionContext = React.createContext();
 
 const {ethereum} = window;
 
-const tokenContractAddress = "0x682E3A10BeC3d0BeF84c8B5E518ce821193EEC0E";
+const tokenContractAddress = "0x2AeF139E269393111C9325ab502d3c77cC78b72E";
 
 const getEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum);
@@ -22,6 +22,13 @@ const getEthereumContract = () => {
 export const TransactionsProvider = ({children}) => {
 
     const [currentAccount, setCurrentAccount] = useState("");
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+        tokenContractAddress,
+        tokenABI,
+        signer
+    );
 
     const checkIfWalletIsConnected = async () => {
         if(!ethereum) return alert("Please install metamask");
@@ -48,7 +55,6 @@ export const TransactionsProvider = ({children}) => {
     
     const mintNFT = async () => {
         if(window.ethereum){
-            contract = getEthereumContract()
             try {
                 const response = await contract.safeMint("kai");
                 console.log('response: ', response);
