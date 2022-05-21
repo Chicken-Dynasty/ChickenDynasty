@@ -2,7 +2,7 @@ import React,{useContext, useState} from "react";
 import { TransactionContext } from "../context/transactionContext";
 
 const Wheat = () => {
-    const {buyWheat,wheatInputAmount,setWheatInputAmount,handleWheatAmountInput,} = useContext(TransactionContext);
+    const {buyWheat,handleWheatAmountInput} = useContext(TransactionContext);
     console.log("Wheat page")
     return(
         <div className="grid place-items-center h-screen bg-farm">

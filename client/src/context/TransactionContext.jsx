@@ -14,11 +14,10 @@ const eggContractAddress = "0xcF3bf376f4c7910c0BB0F1Afb66c392C86BA0aa7";
 export const TransactionsProvider = ({children}) => {
     const temp = [];
     const [tokenData, setTokenData] = useState([]);
-    const [chickenIdIndex, setChickenId] = useState("");
     const [currentAccount, setCurrentAccount] = useState("");
     const [wheatBalance, setWheatBalance] = useState("");
     const [wheatInputAmount, setWheatInputAmount] = useState("");
-
+    const [chickenName,setChickenName] = useState("");
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const tokenContract = new ethers.Contract(
@@ -36,8 +35,8 @@ export const TransactionsProvider = ({children}) => {
     const handleWheatAmountInput = (e) => {
         setWheatInputAmount(e.target.value);
     }
-    const handleChickenId = () => {
-        setChickenId
+    const handleChickenName = (e) => {
+        setChickenName(e.target.value);
     }
 
 
@@ -75,7 +74,7 @@ export const TransactionsProvider = ({children}) => {
                 if(!Number(checkCoinApproval)){
                     approveToken();
                 }
-                const response = await tokenContract.safeMint("kai");
+                const response = await tokenContract.safeMint(chickenName);
                 console.log('response: ', response);
 
             } catch (error) {
@@ -181,8 +180,7 @@ export const TransactionsProvider = ({children}) => {
         wheatInputAmount,
         setWheatInputAmount,
         handleWheatAmountInput,
-        chickenIdIndex,
-        setChickenId,
+        handleChickenName,
         collectEgg,
 
         }}>

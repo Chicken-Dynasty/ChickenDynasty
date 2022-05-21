@@ -2,7 +2,7 @@ import React,{useContext, useState} from "react";
 import { TransactionContext } from "../context/transactionContext";
 
 const Hatch = () => {
-    const {connectWallet,currentAccount,mintNFT} = useContext(TransactionContext);
+    const {handleChickenName,mintNFT} = useContext(TransactionContext);
     console.log("hatch page")
     return(
         <div className="grid place-items-center h-screen bg-farm ">
@@ -26,7 +26,7 @@ const Hatch = () => {
                 <div className="grid place-items-center p-3 bg-yellow-300 ">
                     <form>
                         <text className="font-alfa"> Name your chicken :  </text>
-                        <input className="border-zinc-500" name= "cname"></input>
+                        <input className="border-zinc-500" name= "cname" onChange={handleChickenName}></input>
                     </form>
                 </div>
             </div>
