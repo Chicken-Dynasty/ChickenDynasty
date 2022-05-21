@@ -1,7 +1,18 @@
-import React,{ useContext } from "react";
+import React,{ useEffect,useContext } from "react";
 import { TransactionContext } from "../context/transactionContext";
 
+
+
 const Card = ({name,rarity,lastClaim,claimModifier}) => {
+    let imageSrc = "";
+    switch(Number(rarity)){
+        case 0 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png"; break;
+        case 1 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807691141150/Untitled1_20220328224357.png"; break;
+        case 2 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807905026128/Untitled1_20220329222159.png"; break;
+        case 3 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394808135725076/Untitled2_20220329222030.png"; break;
+        default : imageSrc = ""
+    }
+
     return(        
     <div className="bg-pink-300 m-4 flex flex-1 
     2xl:min-w-[450px]
@@ -12,9 +23,9 @@ const Card = ({name,rarity,lastClaim,claimModifier}) => {
     ">
         <div className="flex flex-col items-center w-full mt-3 ">
             <div className="flex justify-start w-full mb-6 p-2">
-                <p>Chicken name</p>
+                <p>{name}</p>
             </div>
-            <img src="https://cdn.discordapp.com/attachments/958394721011662938/958394807691141150/Untitled1_20220328224357.png"
+            <img src={imageSrc}
                 className="w-full h-128 2x:h-96 rounded-md shadow-lg object-cover"></img>
             <div>
                 <button className="rounded-full border-2 bg-yellow-300 hover:bg-yellow-400">Collect Egg</button>
@@ -26,7 +37,13 @@ const Card = ({name,rarity,lastClaim,claimModifier}) => {
     );
 }
 const ChickenCard = () => {
-    const {currentAccount,tokenData} = useContext(TransactionContext);
+    const {currentAccount,tokenData,displayNFTByAddress} = useContext(TransactionContext);
+
+    useEffect(() => {
+        console.log("Run fetch Data")
+        displayNFTByAddress()// action here
+    }, [tokenData.length]);
+    
     return(
         <div>
             <div>
