@@ -3,6 +3,7 @@ import { TransactionContext } from "../context/transactionContext";
 import LineChart from "./charts/LineChart";
 import BarChart from "./charts/BarChart";
 import PieChart from "./charts/PieChart";
+import CoinLineChart from "./charts/CoinLineChart";
 
 const Landing = () => {
     console.log("landing");
@@ -10,14 +11,18 @@ const Landing = () => {
         <div className="grid place-items-center h-screen bg-farm">
             <h1 >Landing page</h1>
             <div className="mt-10">
-                <BarChart></BarChart>
+                <CoinLineChart/>
             </div>
             <div className="mt-10">
-                <PieChart></PieChart>
+                <BarChart/>
             </div>
-            <div>
-                <LineChart></LineChart>
+            <div className="mt-10">
+                <PieChart/>
             </div>
+            <div className="mt-10">
+                <LineChart/>
+            </div>
+
         </div>
 
     );
