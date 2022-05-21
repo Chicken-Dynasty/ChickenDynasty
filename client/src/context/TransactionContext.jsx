@@ -7,7 +7,7 @@ export const TransactionContext = React.createContext();
 
 const {ethereum} = window;
 
-const tokenContractAddress = "0x4101FA871b81Dd46Bc4d3C746Ad37F1e5C3B7EC0";
+const tokenContractAddress = "0x98C16C88d347EF74ba75bfeE4b8Df8f3D1065aE4";
 const eggContractAddress = "0xcF3bf376f4c7910c0BB0F1Afb66c392C86BA0aa7";
 
 
@@ -18,6 +18,7 @@ export const TransactionsProvider = ({children}) => {
     const [wheatBalance, setWheatBalance] = useState("");
     const [wheatInputAmount, setWheatInputAmount] = useState("");
     const [chickenName,setChickenName] = useState("");
+    const [transferAddress,setTransferAddress] = useState("");
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const tokenContract = new ethers.Contract(
@@ -37,6 +38,9 @@ export const TransactionsProvider = ({children}) => {
     }
     const handleChickenName = (e) => {
         setChickenName(e.target.value);
+    }
+    const handleTransferAddress = (e) => {
+        setTransferAddress(e.target.value);
     }
 
 
@@ -101,6 +105,20 @@ export const TransactionsProvider = ({children}) => {
             try {
                 console.log(wheatInputAmount);
                 const response = await tokenContract.buyWheat(BigInt(wheatInputAmount));
+                console.log('response: ', response);
+
+            } catch (error) {
+                console.log("error: ", error)
+            }
+        }
+    }
+
+    const transferChicken = async (id) => {
+        if(window.ethereum){
+            try {
+                const approval = await tokenContract.approve(transferAddress,BigInt(id));
+                approval.wait();
+                const response = await tokenContract["safeTransferFrom(address,address,uint256)"](currentAccount,transferAddress,BigInt(id));
                 console.log('response: ', response);
 
             } catch (error) {
@@ -182,6 +200,8 @@ export const TransactionsProvider = ({children}) => {
         handleWheatAmountInput,
         handleChickenName,
         collectEgg,
+        handleTransferAddress,
+        transferChicken,
 
         }}>
             {children}

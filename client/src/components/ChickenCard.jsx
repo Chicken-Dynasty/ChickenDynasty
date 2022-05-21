@@ -2,9 +2,8 @@ import React,{ useEffect,useContext } from "react";
 import { TransactionContext } from "../context/transactionContext";
 
 
-
 const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
-    const {setChickenId,chickenIdIndex,collectEgg} = useContext(TransactionContext);
+    const {setChickenId,chickenIdIndex,collectEgg,handleTransferAddress,transferChicken} = useContext(TransactionContext);
     let imageSrc = "";
     switch(Number(rarity)){
         case 0 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png"; break;
@@ -14,9 +13,11 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
         default : imageSrc = ""
     }
     const callCollectEggContract = () => {
-
         collectEgg(Number(chickenId));
+    }
 
+    const transfer = () => {
+        transferChicken(Number(chickenId));
     }
 
     return(        
@@ -30,11 +31,27 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
         <div className="flex flex-col items-center w-full mt-3 ">
             <div className="flex justify-start w-full mb-6 p-2">
                 <p>{name}</p>
+                <div className="flex justify-end w-full mb-6 p-2">
+                    <label for="my-modal" class="btn modal-button btn-outline btn-accent">Transfer </label>
+                    <input type="checkbox" id="my-modal" class="modal-toggle" />
+                    <div class="modal">
+                    <div class="modal-box">
+                        <h3 class="font-bold text-lg">Transfering your chicken</h3>
+                        <p class="py-4">Enter the reciever's address</p>
+                        <input type="text" placeholder="Type here" class="input input-bordered input-success w-full max-w-xs" onChange={handleTransferAddress} />
+                        <div class="modal-action">
+                        <button class="btn btn-success" onClick={transfer}>Transfer</button>
+                        <label for="my-modal" class="btn btn-error">Cancel</label>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
+
             <img src={imageSrc}
                 className="w-full h-128 2x:h-96 rounded-md shadow-lg object-cover"></img>
             <div>
-                <button className="rounded-full border-2 bg-yellow-300 hover:bg-yellow-400" onClick={callCollectEggContract}>Collect Egg</button>
+                <button className="btn btn-accent" onClick={callCollectEggContract}>Collect Egg</button>
             </div>
 
         </div>
