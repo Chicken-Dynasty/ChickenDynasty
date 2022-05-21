@@ -3,27 +3,26 @@ pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts@4.5.0/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts@4.5.0/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts@4.5.0/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts@4.5.0/access/Ownable.sol";
 import "@openzeppelin/contracts@4.5.0/utils/Counters.sol";
 
-contract Token is ERC721, Ownable {
+contract Token is ERC721,ERC721Enumerable, Ownable {
     using Counters for Counters.Counter;
     IERC20 public eggTokenAddr;
-    uint256 public MINTRATE = 100 * 10 ** 18;
-    uint256 public FEEDRATE = 10 * 10 ** 18;
-    uint256 public REWARD = 3 * 10 ** 18;
     uint RANDNUMBER = 4;
+    uint256 public MINTRATE = 100 * 10 ** 18;
+    uint256 public WHEATCOST = 1 * 10 ** 18;
+    uint256 public REWARD = 3 * 10 ** 18;
     Counters.Counter private _tokenIdCounter;
+
+
     mapping (uint256 => Chicken) public chickenMap;
-    uint256 HUNGER = 86400; //seconds = 1 Day
-    uint256 CLAIMABLE = 30; //seconds = 1 Day
-    
+    mapping (address => uint256) public wheatInventory;
 
     struct Chicken {
         string name;
         uint rarity;
-        uint256 lastMeal;
-        uint256 hunger; //24 hours without food
         uint256 lastClaim;
         uint256 claimModifier;
 
@@ -39,26 +38,40 @@ contract Token is ERC721, Ownable {
         _tokenIdCounter.increment();
         uint rarity = randRarity();
         uint claimModifier = checkClaimMod(rarity);
-        chickenMap[tokenId] = Chicken(name,rarity,block.timestamp,HUNGER,block.timestamp,claimModifier);
+        chickenMap[tokenId] = Chicken(name,rarity,block.timestamp,claimModifier);
         _safeMint(msg.sender, tokenId);
     }
 
-    function feed(uint256 tokenId) public {
-        require(ownerOf(tokenId) ==  msg.sender);
-        eggTokenAddr.transferFrom(msg.sender,address(this),FEEDRATE);
-        Chicken storage chicken = chickenMap[tokenId];
-        require(chicken.lastMeal + chicken.hunger > block.timestamp);
-        chickenMap[tokenId].lastMeal = block.timestamp;
+    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
+        internal
+        override(ERC721, ERC721Enumerable)
+    {
+        super._beforeTokenTransfer(from, to, tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+
+    function buyWheat(uint256 amount) public {
+        eggTokenAddr.transferFrom(msg.sender,address(this),amount*WHEATCOST);
+        wheatInventory[msg.sender] += amount;
     }
 
     function claimReward(uint256 tokenId) public {
         require(ownerOf(tokenId) ==  msg.sender);
         Chicken storage chicken = chickenMap[tokenId];
-        require(chicken.lastClaim + CLAIMABLE < block.timestamp);
+        require(chicken.lastClaim + chicken.claimModifier < block.timestamp);
+        require(wheatInventory[msg.sender] > 0 );
+        wheatInventory[msg.sender] -= 1;
         eggTokenAddr.transfer(msg.sender,REWARD);
 
         chicken.lastClaim = block.timestamp;
-        //WIP
 
     }
 
