@@ -7,13 +7,14 @@ export const TransactionContext = React.createContext();
 
 const {ethereum} = window;
 
-const tokenContractAddress = "0x2AeF139E269393111C9325ab502d3c77cC78b72E";
-const eggContractAddress = "0xed4f4d1DF8C1e3f6F9dFFB591382Bb4642E227E5";
+const tokenContractAddress = "0x4101FA871b81Dd46Bc4d3C746Ad37F1e5C3B7EC0";
+const eggContractAddress = "0xcF3bf376f4c7910c0BB0F1Afb66c392C86BA0aa7";
 
 
 export const TransactionsProvider = ({children}) => {
     const temp = [];
     const [tokenData, setTokenData] = useState([]);
+    const [chickenIdIndex, setChickenId] = useState("");
     const [currentAccount, setCurrentAccount] = useState("");
     const [wheatBalance, setWheatBalance] = useState("");
     const [wheatInputAmount, setWheatInputAmount] = useState("");
@@ -34,6 +35,9 @@ export const TransactionsProvider = ({children}) => {
 
     const handleWheatAmountInput = (e) => {
         setWheatInputAmount(e.target.value);
+    }
+    const handleChickenId = () => {
+        setChickenId
     }
 
 
@@ -72,6 +76,19 @@ export const TransactionsProvider = ({children}) => {
                     approveToken();
                 }
                 const response = await tokenContract.safeMint("kai");
+                console.log('response: ', response);
+
+            } catch (error) {
+                console.log("error: ", error)
+            }
+        }
+    }
+
+    const collectEgg = async (id) => {
+        if(window.ethereum){
+            try {
+                console.log(id);
+                const response = await tokenContract.claimReward(BigInt(id));
                 console.log('response: ', response);
 
             } catch (error) {
@@ -164,6 +181,9 @@ export const TransactionsProvider = ({children}) => {
         wheatInputAmount,
         setWheatInputAmount,
         handleWheatAmountInput,
+        chickenIdIndex,
+        setChickenId,
+        collectEgg,
 
         }}>
             {children}
