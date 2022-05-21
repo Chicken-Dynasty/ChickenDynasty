@@ -1,6 +1,7 @@
 import React,{useEffect,useState,Component} from "react";
 import { ethers} from "ethers";
 import tokenABI from "../tokenABI.json";
+import eggABI from "../eggCoinABI.json";
 
 export const TransactionContext = React.createContext();
 
@@ -24,7 +25,7 @@ export const TransactionsProvider = ({children}) => {
 
     const eggCoinContract = new ethers.Contract(
         eggContractAddress,
-        tokenABI,
+        eggABI,
         signer
     );
 
@@ -58,11 +59,10 @@ export const TransactionsProvider = ({children}) => {
     const mintNFT = async () => {
         if(window.ethereum){
             try {
-                const tokenApproval = await eggCoinContract.approve(tokenContractAddress,BigInt(10000));
-                await tokenApproval.wait();
-                const eggCoinapproval = await eggCoinContract.approve(currentAccount,BigInt(10000));
-                await eggCoinapproval.wait();
-                // wait() has the logic to return receipt once the transaction is mined
+                const checkCoinApproval = await eggCoinContract.allowance(currentAccount,tokenContractAddress);
+                if(!Number(checkCoinApproval)){
+                    approveToken();
+                }
                 const response = await tokenContract.safeMint("kai");
                 console.log('response: ', response);
 
@@ -78,6 +78,20 @@ export const TransactionsProvider = ({children}) => {
                 const response = await tokenContract.buyWheat(BigInt(1));
                 console.log('response: ', response);
 
+            } catch (error) {
+                console.log("error: ", error)
+            }
+        }
+    }
+
+    const approveToken = async () => {
+        if(window.ethereum){
+            try {
+                const eggCoinapproval = await eggCoinContract.approve(currentAccount,BigInt(10000000000000000000000));
+                await eggCoinapproval.wait();
+                const tokenApproval = await eggCoinContract.approve(tokenContractAddress,BigInt(10000000000000000000000));
+                await tokenApproval.wait(); //wait() has the logic to return receipt once the transaction is mined
+                return("Succeed");
             } catch (error) {
                 console.log("error: ", error)
             }
@@ -139,6 +153,7 @@ export const TransactionsProvider = ({children}) => {
         mintNFT,
         displayNFTByAddress,
         buyWheat,
+        approveToken,
 
         }}>
             {children}
