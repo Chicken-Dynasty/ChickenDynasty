@@ -1,4 +1,4 @@
-import React,{useState,useContext} from "react";
+import React,{useState,useContext,useEffect} from "react";
 import { TransactionContext } from "../context/transactionContext";
 import ChickenCard from "./ChickenCard";
 const Welcome = () => {
@@ -7,6 +7,10 @@ const Welcome = () => {
     // displayNFTByAddress();
     console.log(tokenData);
 
+    useEffect(() => {
+        console.log("Run fetch Data")
+        displayNFTByAddress()// action here
+    }, [tokenData.length]);
     return(
         <div className="grid place-items-center h-screen">
             <button className="border-1" onClick={displayNFTByAddress}>Display NFT</button>
