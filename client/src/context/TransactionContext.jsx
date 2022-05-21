@@ -60,6 +60,7 @@ export const TransactionsProvider = ({children}) => {
         if(window.ethereum){
             try {
                 const checkCoinApproval = await eggCoinContract.allowance(currentAccount,tokenContractAddress);
+                console.log(checkCoinApproval);
                 if(!Number(checkCoinApproval)){
                     approveToken();
                 }
