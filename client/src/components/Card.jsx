@@ -45,7 +45,7 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
     
     return( 
 
-    <div className="card w-96 bg-white shadow-xl">
+    <div className="card w-72 bg-white shadow-xl">
         <div className="card-actions justify-end px-5 py-5">
             <label for={`${chickenId}my-modal`}  className="btn modal-button btn-outline btn-accent">Transfer </label>
                     <input type="checkbox" id={`${chickenId}my-modal`}  className="modal-toggle" />
