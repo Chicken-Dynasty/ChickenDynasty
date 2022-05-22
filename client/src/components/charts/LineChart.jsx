@@ -115,7 +115,7 @@ const LineChart = () => {
             />
             <Divider />
             <CardContent>
-                <Box sx={{ height: 300, width: 700, position: 'relative' }}>
+                <Box sx={{ height: 450, width: 800, position: 'relative' }}>
                     <Line
                         data={data} 
                         options={options} 
