@@ -50,7 +50,7 @@ const Hatch = () => {
                 onClick={hatch}
                 className="inline-block px-6 py-2.5 bg-lime-600 text-white font-alfa text-md leading-tight rounded shadow-md hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg focus:outline-none focus:ring-0  transition duration-150 ease-in-out ml-10 p-3"
             > HATCH </button> */}
-            <button class="btn btn-sm sm:btn-sm md:btn-md lg:btn-lg font-alfa text-white bg-lime-600 border-lime-600 hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg hover:border-lime-700  transition duration-150"
+            <button class="btn btn-md sm:btn-sm md:btn-md lg:btn-lg p-x-4 font-alfa text-white bg-lime-600 border-lime-600 hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg hover:border-lime-700  transition duration-150"
              onClick={hatch} >HATCH</button>
         </div>
     );
