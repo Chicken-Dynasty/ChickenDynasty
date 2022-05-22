@@ -39,7 +39,7 @@ const Wheat = () => {
                 <div className="grid place-items-center p-3 bg-lime-500 rounded-md">
                     <form>
                         <text className="font-alfa text-black"> Amount of wheat :  </text>
-                        <input className="border-zinc-500 text-black font-alfa rounded-md" name = "amount" onChange={handleWheatAmountInput} type={"number"} min={1}></input>
+                        <input className="border-zinc-500 text-black font-alfa rounded-md" name = "amount" onChange={handleChange} type={"number"} min={1}></input>
                     </form>
                 </div>
             </div>
