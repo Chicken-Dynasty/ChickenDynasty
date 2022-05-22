@@ -101,16 +101,16 @@ const ChickenCard = () => {
         <div>
             <div>
                 {currentAccount ? (
-                    <h3>Your chicken</h3>
+                    <h3 class="font-alfa text-black text-xl">Your chicken</h3>
                 ):
                 (
-                    <h3>Please connect to your wallet</h3>
+                    <h3 class="font-alfa text-black text-xl">Please connect to your wallet</h3>
                 )}
             </div>
-            <div className="flex flex-wrap justify-center items-center mt-10 ">
+            <div className="carousel-item flex flex-wrap justify-center items-center mt-10 p-2 space-x-2">
                     {
                     tokenData.map((chicken, index) => (
-                        <Card key={index} {...chicken}/>
+                        <Card class= "ml-5 " key={index} {...chicken}/>
                     ))}
                     
             </div>

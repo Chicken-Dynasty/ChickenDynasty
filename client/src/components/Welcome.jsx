@@ -9,7 +9,12 @@ const Welcome = () => {
     return(
         <div className="grid place-items-center h-screen bg-farm">
             <button className="border-1" onClick={displayNFTByAddress}>Display NFT</button>
-            <ChickenCard />
+            <div class="carousel carousel-center w-4/6 p-7 ml-20 space-x-4 bg-white/75 rounded-box">
+                <div class="carousel-item"> <ChickenCard />
+                </div>
+               
+            </div>
+            
         </div>
     );
 };
