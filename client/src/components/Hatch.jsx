@@ -31,8 +31,8 @@ const Hatch = () => {
                     <div className="w-3/6 h-auto px-10 m-3">
                         <img src="https://cdn.discordapp.com/attachments/958394721011662938/977631636571164742/Untitled3_20220522005856.png" alt="..." className="shadow rounded max-w-full h-auto align-center border-none" />
                     </div>
-                    {/* <div class="w-4/6 h-3/4 px-6 m-5 ">
-                        <img src="https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png" alt="..." class="shadow rounded max-w-full h-auto align-center border-none" />
+                    {/* <div className="w-4/6 h-3/4 px-6 m-5 ">
+                        <img src="https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png" alt="..." className="shadow rounded max-w-full h-auto align-center border-none" />
                     </div> */}
                 </div>
                 <div className="grid place-items-center p-3 bg-rose-600 rounded-md ">
@@ -50,7 +50,7 @@ const Hatch = () => {
                 onClick={hatch}
                 className="inline-block px-6 py-2.5 bg-lime-600 text-white font-alfa text-md leading-tight rounded shadow-md hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg focus:outline-none focus:ring-0  transition duration-150 ease-in-out ml-10 p-3"
             > HATCH </button> */}
-            <button class="btn btn-md sm:btn-sm md:btn-md lg:btn-lg p-x-4 font-alfa text-white bg-lime-600 border-lime-600 hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg hover:border-lime-700  transition duration-150"
+            <button className="btn btn-md sm:btn-sm md:btn-md lg:btn-lg p-x-4 font-alfa text-white bg-lime-600 border-lime-600 hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg hover:border-lime-700  transition duration-150"
              onClick={hatch} >HATCH</button>
         </div>
     );
