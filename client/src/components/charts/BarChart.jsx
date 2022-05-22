@@ -141,7 +141,7 @@ const BarChart = () => {
             />
             <Divider />
             <CardContent>
-                <Box sx={{ height: 300, width: 650, position: 'relative' }}>
+                <Box sx={{ height: 450, width: 800, position: 'relative' }}>
                     <Bar
                         data={data} 
                         options={options} 

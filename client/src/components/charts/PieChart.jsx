@@ -100,7 +100,7 @@ const CryptoByVolumePieChart = () => {
             />
             <Divider />
             <CardContent>
-                <Box sx={{ height: 400, width: 500, position: 'relative' }}>
+                <Box sx={{ height: 450, width: 800, position: 'relative' }}>
                     <Pie
                         data={data} 
                         options={options} 
