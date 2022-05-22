@@ -37,7 +37,7 @@ const Hatch = () => {
                 </div>
                 <div className="grid place-items-center p-3 bg-rose-600 rounded-md ">
                     <form>
-                        <h className="font-alfa text-black"> Name your chicken :  </h>
+                        <h1 className="font-alfa text-black"> Name your chicken :  </h1>
                         <input className="border-zinc-500 text-black rounded-md" name= "name" onChange={handleChange}></input>
                     </form>
                 </div>
