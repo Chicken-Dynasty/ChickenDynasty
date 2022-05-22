@@ -106,6 +106,7 @@ export const TransactionsProvider = ({children}) => {
                 const approval = await tokenContract.approve(transferAddress,BigInt(id));
                 approval.wait();
                 const response = await tokenContract["safeTransferFrom(address,address,uint256)"](currentAccount,transferAddress,BigInt(id));
+                response.wait();
                 console.log('response: ', response);
 
             } catch (error) {
