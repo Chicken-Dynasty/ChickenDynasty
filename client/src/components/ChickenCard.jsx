@@ -14,9 +14,9 @@ const ChickenCard = () => {
     return(
         <div>
             <div className="justify-center">
-                <button class="btn gap-2">
+                <button className="btn gap-2">
                     Wheat Balance
-                <div class="badge badge-secondary">{wheatBalance}</div>
+                <div className="badge badge-secondary">{wheatBalance}</div>
                 </button>
             </div>
             <div>
