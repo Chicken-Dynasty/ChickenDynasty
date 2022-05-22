@@ -5,6 +5,7 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
     const [transferAddress,setTransferAddress] = useState("");
     const ref = useRef(transferAddress);
 
+    const modal = chickenId+"my-modal";
     let imageSrc = "";
     console.log(name,Number(rarity),Number(lastClaim),Number(claimModifier),Number(chickenId));
     const callCollectEggContract = () => {
@@ -35,25 +36,23 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
 
     <div className="card w-96 bg-white shadow-xl">
         <div className="card-actions justify-end px-5 py-5">
-            <label for="my-modal" className="btn modal-button btn-outline btn-accent">Transfer </label>
-                <input type="checkbox" id="my-modal" className="modal-toggle" />
-                <div className="modal">
-                    <div className="modal-box">
-                        <h3 className="font-bold text-lg">Transfering your chicken</h3>
-                        <p className="py-4">Enter the reciever's address</p>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-success w-full max-w-xs" onChange={handleChange} />
-                        <div className="modal-action">
-                            {/* <button className="btn btn-success" onClick={transfer}>Transfer</button> */}
-                            <label for="my-modal" className="btn btn-success" onClick={()=>transfer()}>Transfer</label>
-                            <label for="my-modal" className="btn btn-error">Cancel</label>
+            <label for={`${chickenId}my-modal`}  className="btn modal-button btn-outline btn-accent">Transfer </label>
+                    <input type="checkbox" id={`${chickenId}my-modal`}  className="modal-toggle" />
+                    <div className="modal">
+                        <div className="modal-box">
+                            <h3 className="font-bold text-lg">Transfering your chicken</h3>
+                            <p className="py-4">Enter the reciever's address</p>
+                            <input type="text" placeholder="Type here" className="input input-bordered input-success w-full max-w-xs" onChange={handleChange} />
+                            <div className="modal-action">
+                                <label for={`${chickenId}my-modal`}  className="btn btn-success" onClick={()=>transfer()}>Transfer</label>
+                                <label for={`${chickenId}my-modal`}  className="btn btn-error">Cancel</label>
+                            </div>
                         </div>
                     </div>
-                </div>
         </div>            
         <figure className="px-10 pt-10">
             <img src={imageSrc} className="rounded-xl" />
         </figure> 
-
         <div className="card-body items-center text-center">    
             <h2 className="card-title">{name}</h2>        
             <div className="card-actions py-5">
