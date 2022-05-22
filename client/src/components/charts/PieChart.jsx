@@ -92,7 +92,8 @@ const CryptoByVolumePieChart = () => {
     };
 
     return (
-        <Card>
+        <div className='carousel-item  grid plac-items-center'>
+        <Card className='place-self-center'>
             <CardHeader 
                 title='Top 3 Cryptocurrencies By Volume' 
                 subheader='Top 3 Cryptocurrencies Measured By Their Total Volume' 
@@ -108,6 +109,7 @@ const CryptoByVolumePieChart = () => {
                 </Box>
             </CardContent>
         </Card>
+        </div>
     );
 };
 

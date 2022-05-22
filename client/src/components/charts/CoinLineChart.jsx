@@ -55,7 +55,8 @@ const CoinLineChart = () => { //{ coin }
 
   if (!coin_id) return <LinearProgress style={{ backgroundColor: "yellow" }} />;
   return (
-        <Card>
+        <div className="carousel-item grid place-items-center">
+        <Card className="place-self-center">
             <CardHeader 
                 title= {coin_id} 
                 subheader='Price of Coin Currency over time' 
@@ -121,6 +122,7 @@ const CoinLineChart = () => { //{ coin }
                 </Box>
             </CardContent>
         </Card>
+        </div>
   );
 }
  

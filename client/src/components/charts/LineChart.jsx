@@ -107,7 +107,8 @@ const LineChart = () => {
       };
 
     return (
-        <Card>
+        <div className=' grid place-items-center'>
+        <Card className='place-self-center'>
             <CardHeader 
                 title='Top 5 Cryptocurrencies By All-Time-Low' 
                 subheader='Top 5 Cryptocurrencies Measured By Their All-Time-Low (ATL)' 
@@ -123,6 +124,7 @@ const LineChart = () => {
                 </Box>
             </CardContent>
         </Card>
+        </div>
     );
 };
 

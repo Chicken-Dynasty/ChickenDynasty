@@ -133,7 +133,8 @@ const BarChart = () => {
     };
 
     return (
-        <Card>
+        <div className='grid place-items-center'>
+        <Card className='place-self-center'>
             <CardHeader 
                 title='Top 10 Most Expensive Cryptocurrencies' 
                 subheader='Top 10 Most Expensive Cryptocurrencies Measured By Their Market Price' 
@@ -149,6 +150,8 @@ const BarChart = () => {
                 </Box>
             </CardContent>
         </Card>
+        </div>
+        
     );
 };
 
