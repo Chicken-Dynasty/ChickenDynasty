@@ -38,7 +38,7 @@ const Hatch = () => {
                 <div className="grid place-items-center p-3 bg-rose-600 rounded-md ">
                     <form>
                         <text className="font-alfa text-black"> Name your chicken :  </text>
-                        <input className="border-zinc-500 text-black rounded-md" name= "name" onChange={handleChickenName}></input>
+                        <input className="border-zinc-500 text-black rounded-md" name= "name" onChange={handleChange}></input>
                     </form>
                 </div>
             </div>
@@ -51,7 +51,7 @@ const Hatch = () => {
                 className="inline-block px-6 py-2.5 bg-lime-600 text-white font-alfa text-md leading-tight rounded shadow-md hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg focus:outline-none focus:ring-0  transition duration-150 ease-in-out ml-10 p-3"
             > HATCH </button> */}
             <button class="btn btn-sm sm:btn-sm md:btn-md lg:btn-lg font-alfa text-white bg-lime-600 border-lime-600 hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg hover:border-lime-700  transition duration-150"
-             onClick={mintNFT} >HATCH</button>
+             onClick={hatch} >HATCH</button>
         </div>
     );
 };
