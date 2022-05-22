@@ -8,9 +8,7 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
     let imageSrc = "";
     console.log(name,Number(rarity),Number(lastClaim),Number(claimModifier),Number(chickenId));
     const callCollectEggContract = () => {
-        // collectEgg(Number(chickenId));
-        console.log(Number(chickenId));
-
+        collectEgg(Number(chickenId));
     }
 
     const handleChange = (event) => {
