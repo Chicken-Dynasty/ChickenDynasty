@@ -2,15 +2,23 @@ import React,{ useEffect,useContext, useRef,useState} from "react";
 import { TransactionContext } from "../context/transactionContext";
 import Card from "./Card";
 const ChickenCard = () => {
-    const {currentAccount,tokenData,displayNFTByAddress} = useContext(TransactionContext);
+    const {currentAccount,tokenData,displayNFTByAddress,checkWheatAmount,wheatBalance} = useContext(TransactionContext);
 
     useEffect(() => {
-        console.log("Run fetch Data")
-        displayNFTByAddress()// action here
+        console.log("Run fetch Data");
+        displayNFTByAddress();// action here
+
+
     }, [tokenData.length]);
 
     return(
         <div>
+            <div className="justify-center">
+                <button class="btn gap-2">
+                    Wheat Balance
+                <div class="badge badge-secondary">{wheatBalance}</div>
+                </button>
+            </div>
             <div>
                 {currentAccount ? (
                     <h3 className="font-alfa text-black text-xl">Your chicken</h3>
