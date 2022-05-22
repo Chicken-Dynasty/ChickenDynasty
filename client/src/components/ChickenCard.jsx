@@ -13,20 +13,6 @@ const ChickenCard = () => {
 
     return(
         <div>
-            <div className="justify-center">
-                <button className="btn gap-2">
-                    Wheat Balance
-                <div className="badge badge-secondary">{wheatBalance}</div>
-                </button>
-            </div>
-            <div>
-                {currentAccount ? (
-                    <h3 className="font-alfa text-black text-xl">Your chicken</h3>
-                ):
-                (
-                    <h3 className="font-alfa text-black text-xl">Please connect to your wallet</h3>
-                )}
-            </div>
             <div className="carousel-item flex flex-wrap justify-center items-center mt-1 p-2  space-x-4">
                     {
                     tokenData.map((chicken, index) => (
