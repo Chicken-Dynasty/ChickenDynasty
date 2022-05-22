@@ -24,13 +24,14 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
         console.log(ref.current);
     }
 
-    const transfer = (id) => {
-        console.log("transfering: ",Number(id));
+    const transfer = () => {
+        console.log("transfering: ",Number(chickenId));
         //transferChicken(ref.current,Number(chickenId));
     }
 
     return( 
-    <div className="card w-96 bg-base-100 shadow-xl">
+
+    <div className="card w-96 bg-white shadow-xl">
         <div className="card-actions justify-end px-5 py-5">
             <label for="my-modal" className="btn modal-button btn-outline btn-accent">Transfer </label>
                 <input type="checkbox" id="my-modal" className="modal-toggle" />
@@ -38,10 +39,11 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
                      <div className="modal-box">
                          <h3 className="font-bold text-lg">Transfering your chicken</h3>
                          <p className="py-4">Enter the reciever's address</p>
+
                          <input type="text" placeholder="Type here" className="input input-bordered input-success w-full max-w-xs" onChange={handleChange} />
                          <div className="modal-action">
                          {/* <button className="btn btn-success" onClick={transfer}>Transfer</button> */}
-                         <label for="my-modal" className="btn btn-success" onClick={ () => {transfer(chickenId)}}>Transfer</label>
+                         <label for="my-modal" className="btn btn-success" onClick={transfer}>Transfer</label>
                          <label for="my-modal" className="btn btn-error">Cancel</label>
                          </div>
                      </div>
@@ -52,14 +54,12 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
         </figure> 
 
         <div className="card-body items-center text-center">    
-            <h2 className="card-title">{Number(chickenId)}</h2>  
-            {/* <h2 className="card-title">{name}</h2>         */}
+            <h2 className="card-title">{name}</h2>        
             <div className="card-actions py-5">
             <button className="btn btn-accent" onClick={callCollectEggContract}>Collect Egg</button>
             </div>
         </div>
-    </div>        
-           
+    </div>                  
     );
 }
 const ChickenCard = () => {
@@ -74,16 +74,16 @@ const ChickenCard = () => {
         <div>
             <div>
                 {currentAccount ? (
-                    <h3>Your chicken</h3>
+                    <h3 className="font-alfa text-black text-xl">Your chicken</h3>
                 ):
                 (
-                    <h3>Please connect to your wallet</h3>
+                    <h3 className="font-alfa text-black text-xl">Please connect to your wallet</h3>
                 )}
             </div>
-            <div className="flex flex-wrap justify-center items-center mt-10 ">
+            <div className="carousel-item flex flex-wrap justify-center items-center mt-1 p-2  space-x-4">
                     {
                     tokenData.map((chicken, index) => (
-                        <Card key={index} {...chicken}/>
+                        <Card className= "" key={index} {...chicken}/>
                     ))}
                     
             </div>
