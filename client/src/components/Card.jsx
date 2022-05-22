@@ -18,8 +18,9 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
     }
 
     const transfer = () => {
-        console.log("This is id:");
         console.log("transfering: ",Number(chickenId));
+        transferChicken(ref.current,Number(chickenId));
+        
     }
     switch(Number(rarity)){
         case 0 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png"; break;
