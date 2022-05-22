@@ -2,8 +2,14 @@ import React,{useContext, useState} from "react";
 import { TransactionContext } from "../context/transactionContext";
 
 const Wheat = () => {
+    const [amount,setAmount] = useState("");
     const {buyWheat,handleWheatAmountInput} = useContext(TransactionContext);
     console.log("Wheat page")
+
+    const handleChange  = (event) => {
+        setAmount(event.target.value);
+        console.log(amount);
+    }
     return(
         <div className="grid place-items-center h-screen bg-farm">
             <div className=" bg-white/90 h-5/6 w-3/5 mt-5 ml-20  rounded-md  "> 
@@ -26,7 +32,7 @@ const Wheat = () => {
                 <div className="grid place-items-center p-3 bg-lime-500 ">
                     <form>
                         <text className="font-alfa"> Amount of wheat :  </text>
-                        <input className="border-zinc-500" name = "amount" onChange={handleWheatAmountInput} type={"number"} min={1}></input>
+                        <input className="border-zinc-500" name = "amount" onChange={handleChange} type={"number"} min={1}></input>
                     </form>
                 </div>
             </div>
@@ -35,7 +41,7 @@ const Wheat = () => {
                 type="button"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
-                onClick={buyWheat}
+                onClick={() => buyWheat(amount)}
                 className="inline-block px-6 py-2.5 bg-rose-700 text-white font-alfa text-md leading-tight
                  rounded shadow-md hover:bg-rose-800 hover:shadow-lg focus:bg-rose-800 focus:shadow-lg focus:outline-none 
                  focus:ring-0  transition duration-150 ease-in-out ml-10 p-3"> BUY </button>

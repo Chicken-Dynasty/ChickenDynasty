@@ -17,7 +17,6 @@ export const TransactionsProvider = ({children}) => {
     const [currentAccount, setCurrentAccount] = useState("");
     const [wheatBalance, setWheatBalance] = useState("");
     const [wheatInputAmount, setWheatInputAmount] = useState("");
-    const [chickenName,setChickenName] = useState("");
     const [transferAddress,setTransferAddress] = useState("");
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
@@ -34,13 +33,13 @@ export const TransactionsProvider = ({children}) => {
     );
 
     const handleWheatAmountInput = (e) => {
-        setWheatInputAmount(e.target.value);
+        setWheatInputAmount((prevState) => ({...prevState,...e.target.value}));
+        console.log(wheatInputAmount);
     }
-    const handleChickenName = (e) => {
-        setChickenName(e.target.value);
-    }
+
     const handleTransferAddress = (e) => {
-        setTransferAddress(e.target.value);
+        setTransferAddress((prevState) => ({...prevState,...e.target.value}));
+        console.log(transferAddress);
     }
 
 
@@ -70,7 +69,7 @@ export const TransactionsProvider = ({children}) => {
         }
       };
     
-    const mintNFT = async () => {
+    const mintNFT = async (name) => {
         if(window.ethereum){
             try {
                 const checkCoinApproval = await eggCoinContract.allowance(currentAccount,tokenContractAddress);
@@ -78,7 +77,8 @@ export const TransactionsProvider = ({children}) => {
                 if(!Number(checkCoinApproval)){
                     approveToken();
                 }
-                const response = await tokenContract.safeMint(chickenName);
+                console.log("minting: ",name);
+                const response = await tokenContract.safeMint(name);
                 console.log('response: ', response);
 
             } catch (error) {
@@ -100,11 +100,11 @@ export const TransactionsProvider = ({children}) => {
         }
     }
 
-    const buyWheat = async () => {
+    const buyWheat = async (amount) => {
         if(window.ethereum){
             try {
-                console.log(wheatInputAmount);
-                const response = await tokenContract.buyWheat(BigInt(wheatInputAmount));
+                console.log(amount);
+                const response = await tokenContract.buyWheat(BigInt(amount));
                 console.log('response: ', response);
 
             } catch (error) {
@@ -198,7 +198,6 @@ export const TransactionsProvider = ({children}) => {
         wheatInputAmount,
         setWheatInputAmount,
         handleWheatAmountInput,
-        handleChickenName,
         collectEgg,
         handleTransferAddress,
         transferChicken,
