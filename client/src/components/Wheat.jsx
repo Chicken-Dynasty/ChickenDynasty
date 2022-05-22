@@ -21,10 +21,10 @@ const Wheat = () => {
         <div className="grid place-items-center h-screen bg-farm">
             <div className=" bg-white/90 h-5/6 w-3/5 mt-5 ml-20  rounded-md  "> 
                 <div className="p-3 bg-lime-400 rounded-md mb-2">
-                    <text className="font-alfa text-black"> BUY WHEAT</text>
+                    <p className="font-alfa text-black"> BUY WHEAT</p>
                 </div>
                 <div className="grid place-items-center mt-2">
-                     <text className=" font-alfa text-black text-center"> 1 Wheat = 1 EGG</text>
+                     <p className=" font-alfa text-black text-center"> 1 Wheat = 1 EGG</p>
                 </div>
                 
                 
@@ -38,7 +38,7 @@ const Wheat = () => {
                 </div>
                 <div className="grid place-items-center p-3 bg-lime-500 rounded-md">
                     <form>
-                        <text className="font-alfa text-black"> Amount of wheat :  </text>
+                        <h className="font-alfa text-black"> Amount of wheat :  </h>
                         <input className="border-zinc-500 text-black font-alfa rounded-md" name = "amount" onChange={handleChange} type={"number"} min={1}></input>
                     </form>
                 </div>
