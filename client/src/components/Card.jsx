@@ -1,12 +1,20 @@
 import React,{ useEffect,useContext, useRef,useState} from "react";
 import { TransactionContext } from "../context/transactionContext";
+import Countdown from 'react-countdown';
+
+
 const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
-    const {collectEgg,transferChicken} = useContext(TransactionContext);
+    const {collectEgg,transferChicken,wheatBalance,displayNFTByAddress} = useContext(TransactionContext);
     const [transferAddress,setTransferAddress] = useState("");
+    const [claimable,setClaimable] = useState("");
     const ref = useRef(transferAddress);
 
-    const modal = chickenId+"my-modal";
     let imageSrc = "";
+    let claimRef  = Number(lastClaim)+Number(claimModifier) < Math.floor(new Date().getTime()/1000.0);
+    let remainingTime = (Number(lastClaim)+Number(claimModifier)- Math.floor(new Date().getTime()/1000.0)) * 1000;
+    let countDownEnd = false;
+    console.log("claimable in ", remainingTime);
+
     console.log(name,Number(rarity),Number(lastClaim),Number(claimModifier),Number(chickenId));
     const callCollectEggContract = () => {
         collectEgg(Number(chickenId));
@@ -22,6 +30,7 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
         transferChicken(ref.current,Number(chickenId));
         
     }
+
     switch(Number(rarity)){
         case 0 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png"; break;
         case 1 : imageSrc = "https://cdn.discordapp.com/attachments/958394721011662938/958394807691141150/Untitled1_20220328224357.png"; break;
@@ -30,8 +39,9 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
         default : imageSrc = ""
     }
 
-    // useEffect(() => {
-    // }, [])
+    useEffect(() => {
+        displayNFTByAddress();
+    }, [countDownEnd])
     
     return( 
 
@@ -57,7 +67,14 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
         <div className="card-body items-center text-center">    
             <h2 className="card-title">{name}</h2>        
             <div className="card-actions py-5">
-            <button className="btn btn-accent" onClick={callCollectEggContract}>Collect Egg</button>
+                {
+                    wheatBalance ? (
+                        claimRef ? (<button className="btn btn-accent" onClick={callCollectEggContract}>Collect Egg</button>) :
+                        <button className="btn btn-error"><Countdown date={Date.now() + remainingTime} onComplete={displayNFTByAddress} /></button>
+                    ): 
+                    <button className="btn btn-error">Insufficient Wheat</button>
+                    
+                }
             </div>
         </div>
     </div>                  
