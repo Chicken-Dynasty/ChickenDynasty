@@ -7,7 +7,7 @@ export const TransactionContext = React.createContext();
 
 const {ethereum} = window;
 
-const tokenContractAddress = "0x4101FA871b81Dd46Bc4d3C746Ad37F1e5C3B7EC0";
+const tokenContractAddress = "0xBd113ce0D2f9fCa568c22d28c526505DFaFB56DB";
 const eggContractAddress = "0xcF3bf376f4c7910c0BB0F1Afb66c392C86BA0aa7";
 
 
@@ -17,7 +17,7 @@ export const TransactionsProvider = ({children}) => {
     const [currentAccount, setCurrentAccount] = useState("");
     const [wheatBalance, setWheatBalance] = useState("");
     const [wheatInputAmount, setWheatInputAmount] = useState("");
-    const [chickenName,setChickenName] = useState("");
+    const [transferAddress,setTransferAddress] = useState("");
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const tokenContract = new ethers.Contract(
@@ -33,10 +33,13 @@ export const TransactionsProvider = ({children}) => {
     );
 
     const handleWheatAmountInput = (e) => {
-        setWheatInputAmount(e.target.value);
+        setWheatInputAmount((prevState) => ({...prevState,...e.target.value}));
+        console.log(wheatInputAmount);
     }
-    const handleChickenName = (e) => {
-        setChickenName(e.target.value);
+
+    const handleTransferAddress = (e) => {
+        setTransferAddress((prevState) => ({...prevState,...e.target.value}));
+        console.log(transferAddress);
     }
 
 
@@ -66,7 +69,7 @@ export const TransactionsProvider = ({children}) => {
         }
       };
     
-    const mintNFT = async () => {
+    const mintNFT = async (name) => {
         if(window.ethereum){
             try {
                 const checkCoinApproval = await eggCoinContract.allowance(currentAccount,tokenContractAddress);
@@ -74,7 +77,8 @@ export const TransactionsProvider = ({children}) => {
                 if(!Number(checkCoinApproval)){
                     approveToken();
                 }
-                const response = await tokenContract.safeMint(chickenName);
+                console.log("minting: ",name);
+                const response = await tokenContract.safeMint(name);
                 console.log('response: ', response);
 
             } catch (error) {
@@ -96,11 +100,25 @@ export const TransactionsProvider = ({children}) => {
         }
     }
 
-    const buyWheat = async () => {
+    const buyWheat = async (amount) => {
         if(window.ethereum){
             try {
-                console.log(wheatInputAmount);
-                const response = await tokenContract.buyWheat(BigInt(wheatInputAmount));
+                console.log(amount);
+                const response = await tokenContract.buyWheat(BigInt(amount));
+                console.log('response: ', response);
+
+            } catch (error) {
+                console.log("error: ", error)
+            }
+        }
+    }
+
+    const transferChicken = async (id) => {
+        if(window.ethereum){
+            try {
+                const approval = await tokenContract.approve(transferAddress,BigInt(id));
+                approval.wait();
+                const response = await tokenContract["safeTransferFrom(address,address,uint256)"](currentAccount,transferAddress,BigInt(id));
                 console.log('response: ', response);
 
             } catch (error) {
@@ -131,16 +149,17 @@ export const TransactionsProvider = ({children}) => {
                 // console.log('response: ', Number(balance));
 
                 const nftAtIndex = [];
-                for (let index = 0; index < balance; index++) {
+                for (let index = 0; index < Number(balance); index++) {
                     const response = await tokenContract.tokenOfOwnerByIndex(currentAccount,BigInt(index));  //Will return the index of the NFT inside the tokenContract.
-                    nftAtIndex.push(response);
+                    nftAtIndex.push(Number(response));
                 }
-                // console.log(nftAtIndex);
+                console.log(nftAtIndex);
                 
-                for (const index in nftAtIndex) {
-                    const response = await tokenContract.chickenMap(BigInt(index));
+                for(let index = 0; index < nftAtIndex.length ; index++) {
+                    const response = await tokenContract.chickenMap(BigInt(nftAtIndex[index]));
                     temp[index] = (response);
                 }
+
                 
                 console.log(temp);
                 setTokenData(temp);
@@ -180,8 +199,9 @@ export const TransactionsProvider = ({children}) => {
         wheatInputAmount,
         setWheatInputAmount,
         handleWheatAmountInput,
-        handleChickenName,
         collectEgg,
+        handleTransferAddress,
+        transferChicken,
 
         }}>
             {children}
