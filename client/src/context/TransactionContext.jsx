@@ -77,7 +77,7 @@ export const TransactionsProvider = ({children}) => {
     const collectEgg = async (id) => {
         if(window.ethereum){
             try {
-                console.log(id);
+                console.log('collecting egg of: ',id);
                 const response = await tokenContract.claimReward(BigInt(id));
                 console.log('response: ', response);
 
@@ -150,7 +150,7 @@ export const TransactionsProvider = ({children}) => {
                 
                 console.log(temp);
                 setTokenData(temp);
-                
+                checkWheatAmount();
                 
             } catch(error) {
                 console.log("error: ", error)
@@ -163,7 +163,7 @@ export const TransactionsProvider = ({children}) => {
             try{
                 const response = await tokenContract.wheatInventory(currentAccount);
                 setWheatBalance(Number(response));
-                console.log(wheatBalance);
+                console.log("WheatBalance",wheatBalance);
             }
             catch(error){
                 console.log("error: ", error);
@@ -185,6 +185,9 @@ export const TransactionsProvider = ({children}) => {
         tokenData,
         collectEgg,
         transferChicken,
+        checkWheatAmount,
+        wheatBalance,
+
         }}>
             {children}
         </TransactionContext.Provider>
