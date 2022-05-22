@@ -21,10 +21,10 @@ const Hatch = () => {
         <div className="grid place-items-center h-screen bg-farm ">
             <div className=" bg-white/90 h-5/6 w-3/5 mt-5 ml-20  rounded-md  "> 
                 <div className="p-3 bg-rose-600 rounded-md mb-2">
-                    <text className="font-alfa text-black"> BUY AN EGG</text>
+                    <h1 className="font-alfa text-black"> BUY AN EGG</h1>
                 </div>
                 <div className="grid place-items-center mt-2">
-                     <text className=" font-alfa text-black text-center"> Cost : 100 EGG</text>
+                     <p className=" font-alfa text-black text-center"> Cost : 100 EGG</p>
                 </div>
                                 
                 <div  className="h-5/6 w-full  grid  place-items-center ">
@@ -37,7 +37,7 @@ const Hatch = () => {
                 </div>
                 <div className="grid place-items-center p-3 bg-rose-600 rounded-md ">
                     <form>
-                        <text className="font-alfa text-black"> Name your chicken :  </text>
+                        <h className="font-alfa text-black"> Name your chicken :  </h>
                         <input className="border-zinc-500 text-black rounded-md" name= "name" onChange={handleChange}></input>
                     </form>
                 </div>
