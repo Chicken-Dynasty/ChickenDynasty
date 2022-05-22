@@ -149,16 +149,17 @@ export const TransactionsProvider = ({children}) => {
                 // console.log('response: ', Number(balance));
 
                 const nftAtIndex = [];
-                for (let index = 0; index < balance; index++) {
+                for (let index = 0; index < Number(balance); index++) {
                     const response = await tokenContract.tokenOfOwnerByIndex(currentAccount,BigInt(index));  //Will return the index of the NFT inside the tokenContract.
-                    nftAtIndex.push(response);
+                    nftAtIndex.push(Number(response));
                 }
-                // console.log(nftAtIndex);
+                console.log(nftAtIndex);
                 
-                for (const index in nftAtIndex) {
-                    const response = await tokenContract.chickenMap(BigInt(index));
+                for(let index = 0; index < nftAtIndex.length ; index++) {
+                    const response = await tokenContract.chickenMap(BigInt(nftAtIndex[index]));
                     temp[index] = (response);
                 }
+
                 
                 console.log(temp);
                 setTokenData(temp);
