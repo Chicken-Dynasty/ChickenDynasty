@@ -6,8 +6,8 @@ module.exports = {
     extend: {
 
       backgroundImage: {
-        'farm2' : "url('../client/src/components/farm_bg.jpg')",
-        'farm': "url('../client/src/components/farmbg.jpg')"
+        'farm' : "url('../client/src/components/farmbg_opa.jpeg')",
+        'farm2': "url('../client/src/components/farmbg.jpg')"
       },
       fontFamily:{
         alfa: "'Alfa Slab One', cursive"
