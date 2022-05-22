@@ -22,7 +22,7 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
     }
 
     return( 
-    <div class="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-96 bg-white shadow-xl">
         <div className="card-actions justify-end px-5 py-5">
             <label for="my-modal" class="btn modal-button btn-outline btn-accent">Transfer </label>
                 <input type="checkbox" id="my-modal" class="modal-toggle" />
@@ -107,10 +107,10 @@ const ChickenCard = () => {
                     <h3 class="font-alfa text-black text-xl">Please connect to your wallet</h3>
                 )}
             </div>
-            <div className="carousel-item flex flex-wrap justify-center items-center mt-10 p-2 space-x-2">
+            <div className="carousel-item flex flex-wrap justify-center items-center mt-1 p-2  space-x-4">
                     {
                     tokenData.map((chicken, index) => (
-                        <Card class= "ml-5 " key={index} {...chicken}/>
+                        <Card class= "" key={index} {...chicken}/>
                     ))}
                     
             </div>
