@@ -9,6 +9,7 @@ const Welcome = () => {
     return(
         <div className="grid place-items-center h-screen bg-farm">
             {/* <button className=" btn- border-1 font-alfa text-black text-xxl mt-4" onClick={displayNFTByAddress}>Display NFT</button> */}
+            
             <div className="carousel  w-4/6 p-7 ml-20 space-x-4 bg-white/0rounded-box">
                 <div className="carousel-item"> <ChickenCard />
                 </div>

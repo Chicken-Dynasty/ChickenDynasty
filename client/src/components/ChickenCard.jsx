@@ -13,18 +13,18 @@ const ChickenCard = () => {
 
     return(
         <div>
-            <div className="justify-center">
-                <button className="btn gap-2">
+            <div className=" ">
+                <button className="btn gap-2 mb-3">
                     Wheat Balance
                 <div className="badge badge-secondary">{wheatBalance}</div>
                 </button>
             </div>
             <div>
                 {currentAccount ? (
-                    <h3 className="font-alfa text-black text-xl">Your chicken</h3>
+                    <h3 className="font-bold text-black text-xl">Your chicken</h3>
                 ):
                 (
-                    <h3 className="font-alfa text-black text-xl">Please connect to your wallet</h3>
+                    <h3 className="font-bold text-black text-xl">Please connect to your wallet</h3>
                 )}
             </div>
             <div className="carousel-item flex flex-wrap justify-center items-center mt-1 p-2  space-x-4">

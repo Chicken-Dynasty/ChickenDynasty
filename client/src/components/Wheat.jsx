@@ -21,10 +21,10 @@ const Wheat = () => {
         <div className="grid place-items-center h-screen bg-farm">
             <div className=" bg-white/90 h-5/6 w-3/5 mt-5 ml-20  rounded-md  "> 
                 <div className="p-3 bg-lime-400 rounded-md mb-2">
-                    <p className="font-alfa text-black"> BUY WHEAT</p>
+                    <p className="font-bold text-black"> BUY WHEAT</p>
                 </div>
                 <div className="grid place-items-center mt-2">
-                     <p className=" font-alfa text-black text-center"> 1 Wheat = 1 EGG</p>
+                     <p className=" font-bold text-black text-center"> 1 Wheat = 1 EGG</p>
                 </div>
                 
                 
@@ -38,15 +38,15 @@ const Wheat = () => {
                 </div>
                 <div className="grid place-items-center p-3 bg-lime-500 rounded-md">
                     <form>
-                        <h1 className="font-alfa text-black"> Amount of wheat :  </h1>
-                        <input className="border-zinc-500 text-black font-alfa rounded-md" name = "amount" onChange={handleChange} type={"number"} min={1}></input>
+                        <label className="font-bold text-black"> Amount of wheat :  </label>
+                        <input className="border-zinc-500 text-black font-bold rounded-md" name = "amount" onChange={handleChange} type={"number"} min={1}></input>
                     </form>
                 </div>
             </div>
 
             <button
                 onClick={exceuteBuy}
-                className=" btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-rose-700 border-rose-800 text-white font-alfa text-md hover:bg-rose-800 hover:shadow-lg hover:border-rose-800 
+                className=" btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-rose-700 border-rose-800 text-white font-bold text-md hover:bg-rose-800 hover:shadow-lg hover:border-rose-800 
                 transition duration-150 ml-10 p-3"> BUY </button>
 
         </div>
