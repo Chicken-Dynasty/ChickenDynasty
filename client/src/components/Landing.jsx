@@ -9,7 +9,7 @@ const Landing = () => {
     console.log("landing");
     return(
         <div className="grid place-items-center h-screen bg-farm">
-            <h1 className="font-alfa text-4xl text-black ml-20 mt-10">Landing page</h1>
+            <h1 className="font-bold text-4xl text-black ml-20 mt-10">Cryptocurrencies</h1>
             {/* <div className="mt-10">
                 <CoinLineChart/>
             </div>
@@ -37,7 +37,7 @@ const Landing = () => {
                     <LineChart/>
                 </div>
             </div> 
-            <div className="flex justify-center w-full p-2 gap-2 ml-20 mt-0">
+            <div className="flex justify-center w-full p-4 gap-2 ml-20 mt-0">
                 <a href="#item1" className="btn btn-sm">1</a> 
                 <a href="#item2" className="btn btn-sm">2</a> 
                 <a href="#item3" className="btn btn-sm">3</a> 

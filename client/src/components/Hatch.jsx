@@ -21,10 +21,10 @@ const Hatch = () => {
         <div className="grid place-items-center h-screen bg-farm ">
             <div className=" bg-white/90 h-5/6 w-3/5 mt-5 ml-20  rounded-md  "> 
                 <div className="p-3 bg-rose-600 rounded-md mb-2">
-                    <h1 className="font-alfa text-black"> BUY AN EGG</h1>
+                    <h1 className="font-bold text-black"> BUY AN EGG</h1>
                 </div>
                 <div className="grid place-items-center mt-2">
-                     <p className=" font-alfa text-black text-center"> Cost : 100 EGG</p>
+                     <p className=" font-bold text-black text-center"> Cost : 100 EGG</p>
                 </div>
                                 
                 <div  className="h-5/6 w-full  grid  place-items-center ">
@@ -37,7 +37,7 @@ const Hatch = () => {
                 </div>
                 <div className="grid place-items-center p-3 bg-rose-600 rounded-md ">
                     <form>
-                        <h1 className="font-alfa text-black"> Name your chicken :  </h1>
+                        <label className="font-bold text-black"> Name your chicken :  </label>
                         <input className="border-zinc-500 text-black rounded-md" name= "name" onChange={handleChange}></input>
                     </form>
                 </div>
@@ -50,7 +50,7 @@ const Hatch = () => {
                 onClick={hatch}
                 className="inline-block px-6 py-2.5 bg-lime-600 text-white font-alfa text-md leading-tight rounded shadow-md hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg focus:outline-none focus:ring-0  transition duration-150 ease-in-out ml-10 p-3"
             > HATCH </button> */}
-            <button className="btn btn-md sm:btn-sm md:btn-md lg:btn-lg p-x-4 font-alfa text-white bg-lime-600 border-lime-600 hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg hover:border-lime-700  transition duration-150"
+            <button className="btn btn-md sm:btn-sm md:btn-md lg:btn-lg p-x-4 font-bold text-white bg-lime-600 border-lime-600 hover:bg-lime-700 hover:shadow-lg focus:bg-lime-700 focus:shadow-lg hover:border-lime-700  transition duration-150"
              onClick={hatch} >HATCH</button>
         </div>
     );
