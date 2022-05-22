@@ -29,8 +29,8 @@ const Wheat = () => {
                 
                 
                 <div  className="h-5/6 w-full  grid  place-items-center ">
-                    <div class="w-3/6 h-auto px-10 m-3">
-                        <img src="https://cdn.discordapp.com/attachments/958394721011662938/977648219205017740/Untitled4_20220522020454.png" alt="..." class="shadow rounded max-w-full h-auto align-center border-none" />
+                    <div className="w-3/6 h-auto px-10 m-3">
+                        <img src="https://cdn.discordapp.com/attachments/958394721011662938/977648219205017740/Untitled4_20220522020454.png" alt="..." className="shadow rounded max-w-full h-auto align-center border-none" />
                     </div>
                     {/* <div class="w-4/6 h-3/4 px-6 m-5 ">
                         <img src="https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png" alt="..." class="shadow rounded max-w-full h-auto align-center border-none" />

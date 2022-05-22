@@ -23,25 +23,25 @@ const Landing = () => {
                 <LineChart/>
             </div> */}
 
-            <div class="carousel w-1/2 ml-20 mb-0">
-                <div id="item1" class="carousel-item grid plac-items-center w-full ">
+            <div className="carousel w-1/2 ml-20 mb-0">
+                <div id="item1" className="carousel-item grid plac-items-center w-full ">
                     <CoinLineChart/>
                 </div> 
-                <div id="item2" class="carousel-item w-full  grid plac-items-center ">
+                <div id="item2" className="carousel-item w-full  grid plac-items-center ">
                     <BarChart/>
                 </div> 
-                <div id="item3" class="carousel-item w-full grid plac-items-center">
+                <div id="item3" className="carousel-item w-full grid plac-items-center">
                     <PieChart/>
                 </div> 
-                <div id="item4" class="carousel-item w-full  grid plac-items-center">
+                <div id="item4" className="carousel-item w-full  grid plac-items-center">
                     <LineChart/>
                 </div>
             </div> 
-            <div class="flex justify-center w-full p-2 gap-2 ml-20 mt-0">
-                <a href="#item1" class="btn btn-sm">1</a> 
-                <a href="#item2" class="btn btn-sm">2</a> 
-                <a href="#item3" class="btn btn-sm">3</a> 
-                <a href="#item4" class="btn btn-sm">4</a>
+            <div className="flex justify-center w-full p-2 gap-2 ml-20 mt-0">
+                <a href="#item1" className="btn btn-sm">1</a> 
+                <a href="#item2" className="btn btn-sm">2</a> 
+                <a href="#item3" className="btn btn-sm">3</a> 
+                <a href="#item4" className="btn btn-sm">4</a>
             </div>
 
         </div>
