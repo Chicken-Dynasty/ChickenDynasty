@@ -1,15 +1,22 @@
-import React,{useContext, useState} from "react";
+import React,{useContext, useState , useRef} from "react";
 import { TransactionContext } from "../context/transactionContext";
 
 const Wheat = () => {
-    const [amount,setAmount] = useState("");
-    const {buyWheat,handleWheatAmountInput} = useContext(TransactionContext);
-    console.log("Wheat page")
+    const {buyWheat} = useContext(TransactionContext);
 
-    const handleChange  = (event) => {
-        setAmount(event.target.value);
-        console.log(amount);
+    const[amount,setAmount] = useState("");
+    const ref = useRef(amount);
+
+    const handleChange = (event) => {
+        ref.current = event.target.value;
+        console.log(ref.current);
     }
+
+    const exceuteBuy = () =>{
+        buyWheat(ref.current);
+    }
+
+    console.log("Wheat page")
     return(
         <div className="grid place-items-center h-screen bg-farm">
             <div className=" bg-white/90 h-5/6 w-3/5 mt-5 ml-20  rounded-md  "> 
@@ -41,7 +48,7 @@ const Wheat = () => {
                 type="button"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
-                onClick={() => buyWheat(amount)}
+                onClick={exceuteBuy}
                 className="inline-block px-6 py-2.5 bg-rose-700 text-white font-alfa text-md leading-tight
                  rounded shadow-md hover:bg-rose-800 hover:shadow-lg focus:bg-rose-800 focus:shadow-lg focus:outline-none 
                  focus:ring-0  transition duration-150 ease-in-out ml-10 p-3"> BUY </button>

@@ -16,8 +16,6 @@ export const TransactionsProvider = ({children}) => {
     const [tokenData, setTokenData] = useState([]);
     const [currentAccount, setCurrentAccount] = useState("");
     const [wheatBalance, setWheatBalance] = useState("");
-    const [wheatInputAmount, setWheatInputAmount] = useState("");
-    const [transferAddress,setTransferAddress] = useState("");
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const tokenContract = new ethers.Contract(
@@ -31,17 +29,6 @@ export const TransactionsProvider = ({children}) => {
         eggABI,
         signer
     );
-
-    const handleWheatAmountInput = (e) => {
-        setWheatInputAmount((prevState) => ({...prevState,...e.target.value}));
-        console.log(wheatInputAmount);
-    }
-
-    const handleTransferAddress = (e) => {
-        setTransferAddress((prevState) => ({...prevState,...e.target.value}));
-        console.log(transferAddress);
-    }
-
 
 
     const checkIfWalletIsConnected = async () => {
@@ -113,7 +100,7 @@ export const TransactionsProvider = ({children}) => {
         }
     }
 
-    const transferChicken = async (id) => {
+    const transferChicken = async (transferAddress,id) => {
         if(window.ethereum){
             try {
                 const approval = await tokenContract.approve(transferAddress,BigInt(id));
@@ -196,13 +183,8 @@ export const TransactionsProvider = ({children}) => {
         displayNFTByAddress,
         buyWheat,
         tokenData,
-        wheatInputAmount,
-        setWheatInputAmount,
-        handleWheatAmountInput,
         collectEgg,
-        handleTransferAddress,
         transferChicken,
-
         }}>
             {children}
         </TransactionContext.Provider>
