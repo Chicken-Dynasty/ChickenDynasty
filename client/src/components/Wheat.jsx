@@ -8,10 +8,10 @@ const Wheat = () => {
         <div className="grid place-items-center h-screen bg-farm">
             <div className=" bg-white/90 h-5/6 w-3/5 mt-5 ml-20  rounded-md  "> 
                 <div className="p-3 bg-lime-400 rounded-md mb-2">
-                    <text className="font-alfa "> BUY WHEAT</text>
+                    <text className="font-alfa text-black"> BUY WHEAT</text>
                 </div>
                 <div className="grid place-items-center mt-2">
-                     <text className=" font-alfa text-center"> 1 Wheat = 1 EGG</text>
+                     <text className=" font-alfa text-black text-center"> 1 Wheat = 1 EGG</text>
                 </div>
                 
                 
@@ -23,22 +23,21 @@ const Wheat = () => {
                         <img src="https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png" alt="..." class="shadow rounded max-w-full h-auto align-center border-none" />
                     </div> */}
                 </div>
-                <div className="grid place-items-center p-3 bg-lime-500 ">
+                <div className="grid place-items-center p-3 bg-lime-500 rounded-md">
                     <form>
-                        <text className="font-alfa"> Amount of wheat :  </text>
-                        <input className="border-zinc-500" name = "amount" onChange={handleWheatAmountInput} type={"number"} min={1}></input>
+                        <text className="font-alfa text-black"> Amount of wheat :  </text>
+                        <input className="border-zinc-500 text-black font-alfa rounded-md" name = "amount" onChange={handleWheatAmountInput} type={"number"} min={1}></input>
                     </form>
                 </div>
             </div>
 
             <button
-                type="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
+                //type="button"
+                // data-mdb-ripple="true"
+                // data-mdb-ripple-color="light"
                 onClick={buyWheat}
-                className="inline-block px-6 py-2.5 bg-rose-700 text-white font-alfa text-md leading-tight
-                 rounded shadow-md hover:bg-rose-800 hover:shadow-lg focus:bg-rose-800 focus:shadow-lg focus:outline-none 
-                 focus:ring-0  transition duration-150 ease-in-out ml-10 p-3"> BUY </button>
+                className=" btn btn-sm sm:btn-sm md:btn-md lg:btn-lg bg-rose-700 border-rose-800 text-white font-alfa text-md hover:bg-rose-800 hover:shadow-lg hover:border-rose-800 
+                transition duration-150 ml-10 p-3"> BUY </button>
         </div>
     );
 };

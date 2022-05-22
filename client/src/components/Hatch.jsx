@@ -7,7 +7,7 @@ const Hatch = () => {
     return(
         <div className="grid place-items-center h-screen bg-farm ">
             <div className=" bg-white/90 h-5/6 w-3/5 mt-5 ml-20  rounded-md  "> 
-                <div className="p-3 bg-rose-700 rounded-md mb-2">
+                <div className="p-3 bg-rose-600 rounded-md mb-2">
                     <text className="font-alfa text-black"> BUY AN EGG</text>
                 </div>
                 <div className="grid place-items-center mt-2">
@@ -23,10 +23,10 @@ const Hatch = () => {
                         <img src="https://cdn.discordapp.com/attachments/958394721011662938/958394807460438047/Untitled2_20220329222043.png" alt="..." class="shadow rounded max-w-full h-auto align-center border-none" />
                     </div> */}
                 </div>
-                <div className="grid place-items-center p-3 bg-rose-700 ">
+                <div className="grid place-items-center p-3 bg-rose-600 rounded-md ">
                     <form>
                         <text className="font-alfa text-black"> Name your chicken :  </text>
-                        <input className="border-zinc-500 text-black" name= "cname" onChange={handleChickenName}></input>
+                        <input className="border-zinc-500 text-black rounded-md" name= "cname" onChange={handleChickenName}></input>
                     </form>
                 </div>
             </div>
