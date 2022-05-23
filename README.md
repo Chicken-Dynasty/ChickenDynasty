@@ -1,3 +1,2 @@
 # ChickenDynasty
-Hello
-hellooo
+# This is project
