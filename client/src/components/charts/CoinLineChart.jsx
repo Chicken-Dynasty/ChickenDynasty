@@ -58,7 +58,7 @@ const CoinLineChart = () => { //{ coin }
         <div className="carousel-item grid place-items-center">
         <Card className="place-self-center">
             <CardHeader 
-                title= {coin_id} 
+                title= {coin_id.toUpperCase()} 
                 subheader='Price of Coin Currency over time' 
             />
             <Divider />
