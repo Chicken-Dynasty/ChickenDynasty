@@ -8,9 +8,14 @@ import {BrowserRouter as Router,Route,Link, Routes} from "react-router-dom";
 import Welcome from './components/Welcome';
 import Wheat from './components/Wheat';
 import Landing from './components/Landing';
+import {Helmet} from "react-helmet";
 const App = () => {
   return (
     <div className="fill-window">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Chicken Dynasty</title>
+      </Helmet>
       <TransactionsProvider >
       <Router>
           <Navbar/>
