@@ -14,13 +14,11 @@ const Welcome = () => {
                     Wheat Balance
                 <div className="badge badge-secondary">{wheatBalance}</div>
                 </button>
-            </div>
-            <div>
                 {currentAccount ? (
-                    <h3 className="font-alfa text-black text-xl ml-72">Your chicken</h3>
+                    <h3 className="font-alfa text-black text-xl ml-72 mt-5">Your chicken</h3>
                 ):
                 (
-                    <h3 className="font-alfa text-black text-xl ml-64">Please connect to your wallet</h3>
+                    <h3 className="font-alfa text-black text-xl ml-64 mt-5">Please connect to your wallet</h3>
                 )}
             </div>
             <div className="carousel  w-5/6 p-7 ml-72 space-x-4 bg-white/0 rounded-box">
