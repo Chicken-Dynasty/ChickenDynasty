@@ -9,20 +9,20 @@ import Welcome from './components/Welcome';
 import Wheat from './components/Wheat';
 import Landing from './components/Landing';
 const App = () => {
-
   return (
-    <TransactionsProvider>
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/hatch" element={<Hatch />} />
-        <Route path="/farm" element={<Welcome />} />
-        <Route path="/wheat" element={<Wheat />} />
-        <Route path="/" element={<Landing />} />
-      </Routes>
-    </Router>
-      
-    </TransactionsProvider>
+    <div className="fill-window">
+      <TransactionsProvider >
+      <Router>
+          <Navbar/>
+          <Routes>
+            <Route path="/hatch" element={<Hatch />} />
+            <Route path="/farm" element={<Welcome />} />
+            <Route path="/wheat" element={<Wheat />} />
+            <Route path="/" element={<Landing />} />
+          </Routes>
+      </Router>
+      </TransactionsProvider>
+    </div>
   );
 }
 
