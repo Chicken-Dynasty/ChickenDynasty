@@ -9,7 +9,7 @@ const Welcome = () => {
     return(
         <div className="grid h-screen bg-farm">
             {/* <button className=" btn- border-1 font-alfa text-black text-xxl mt-4" onClick={displayNFTByAddress}>Display NFT</button> */}
-            <div className="justify-center mt-20">
+            <div className="justify-center mt-12 h-12">
                 <button className="btn gap-2 ml-72">
                     Wheat Balance
                 <div className="badge badge-secondary">{wheatBalance}</div>
