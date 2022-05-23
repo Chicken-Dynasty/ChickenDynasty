@@ -29,7 +29,7 @@ const Navbar = () => {
                     </svg>
                     <p className="text-2xl leading-6 text-white">Chicken Dynasty</p>
                 </div>
-                <div className="mt-6 flex flex-col justify-start items-center  pl-4 w-full border-gray-600 border-b space-y-3 pb-5 ">
+                <div className="mt-6 flex flex-col justify-start items-center  pl-4 w-full h-full border-gray-600 border-b space-y-3 pb-5 ">
                     <Link to ="/" className="mt-6 flex flex-col justify-start items-center  pl-4 w-full space-y-3 pb-5">
                     <button className="flex jusitfy-start items-center space-x-6 w-full  focus:outline-none  focus:text-zinc-400  text-white rounded ">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
