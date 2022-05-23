@@ -1,5 +1,5 @@
 import React,{ useEffect,useContext, useRef,useState} from "react";
-import { TransactionContext } from "../context/transactionContext";
+import { TransactionContext } from "../context/TransactionContext";
 import Card from "./Card";
 const ChickenCard = () => {
     const {currentAccount,tokenData,displayNFTByAddress,checkWheatAmount,wheatBalance} = useContext(TransactionContext);

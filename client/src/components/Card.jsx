@@ -1,5 +1,5 @@
 import React,{ useEffect,useContext, useRef,useState} from "react";
-import { TransactionContext } from "../context/transactionContext";
+import { TransactionContext } from "../context/TransactionContext";
 import Countdown from 'react-countdown';
 
 
@@ -47,7 +47,7 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
 
     <div className="card w-72 bg-white shadow-xl">
         <div className="card-actions justify-end px-5 py-5">
-            <label for={`${chickenId}my-modal`}  className="btn modal-button btn-outline btn-accent">Transfer </label>
+            <label htmlFor={`${chickenId}my-modal`}  className="btn modal-button btn-outline btn-accent">Transfer </label>
                     <input type="checkbox" id={`${chickenId}my-modal`}  className="modal-toggle" />
                     <div className="modal">
                         <div className="modal-box">
@@ -55,8 +55,8 @@ const Card = ({name,rarity,lastClaim,claimModifier,chickenId}) => {
                             <p className="py-4">Enter the reciever's address</p>
                             <input type="text" placeholder="Type here" className="input input-bordered input-success w-full max-w-xs" onChange={handleChange} />
                             <div className="modal-action">
-                                <label for={`${chickenId}my-modal`}  className="btn btn-success" onClick={()=>transfer()}>Transfer</label>
-                                <label for={`${chickenId}my-modal`}  className="btn btn-error">Cancel</label>
+                                <label htmlFor={`${chickenId}my-modal`}  className="btn btn-success" onClick={()=>transfer()}>Transfer</label>
+                                <label htmlFor={`${chickenId}my-modal`}  className="btn btn-error">Cancel</label>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React,{useEffect,useState,Component} from "react";
+import React,{useEffect,useState,Component, useRef} from "react";
 import { ethers} from "ethers";
 import tokenABI from "../tokenABI.json";
 import eggABI from "../eggCoinABI.json";
@@ -16,6 +16,8 @@ export const TransactionsProvider = ({children}) => {
     const [tokenData, setTokenData] = useState([]);
     const [currentAccount, setCurrentAccount] = useState("");
     const [wheatBalance, setWheatBalance] = useState("");
+    const acc = useRef("");
+
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const tokenContract = new ethers.Contract(
@@ -33,26 +35,25 @@ export const TransactionsProvider = ({children}) => {
 
     const checkIfWalletIsConnected = async () => {
         if(!ethereum) return alert("Please install metamask");
-
         const accounts = await ethereum.request({method: 'eth_accounts'});
         // console.log(accounts);
         setCurrentAccount(accounts[0]);
-
+        acc.current = accounts[0];
+        console.log("After set ",currentAccount,accounts[0],acc.current);
 
     }
 
     const connectWallet = async () => {
         try {
-          if (!ethereum) return alert("Please install MetaMask.");
-    
-          const accounts = await ethereum.request({ method: "eth_requestAccounts", });
-    
-          setCurrentAccount(accounts[0]);
-          window.location.reload();
+            if (!ethereum) return alert("Please install MetaMask.");
+
+            const accounts = await ethereum.request({ method: "eth_requestAccounts", });
+            setCurrentAccount(accounts[0]);
+            console.log("After set"+currentAccount);
+            window.location.reload();
         } catch (error) {
-          console.log(error);
-    
-          throw new Error("No ethereum object");
+            console.log(error);
+            throw new Error("No ethereum object");
         }
       };
     
@@ -132,27 +133,25 @@ export const TransactionsProvider = ({children}) => {
     const displayNFTByAddress = async () => {
         if(window.ethereum){
             try{
-                
-                const balance = await tokenContract.balanceOf(currentAccount);
-                // console.log('response: ', Number(balance));
+                await checkIfWalletIsConnected();
+                console.log("State Acc before enter balance of"+currentAccount);
+                console.log("Ref Acc before enter balanceOf"+acc.current);
+                var balance = await tokenContract.balanceOf(acc.current);
+                console.log(balance)
 
-                const nftAtIndex = [];
+                var nftAtIndex = [];
                 for (let index = 0; index < Number(balance); index++) {
-                    const response = await tokenContract.tokenOfOwnerByIndex(currentAccount,BigInt(index));  //Will return the index of the NFT inside the tokenContract.
+                    const response = await tokenContract.tokenOfOwnerByIndex(acc.current,BigInt(index));  //Will return the index of the NFT inside the tokenContract.
                     nftAtIndex.push(Number(response));
                 }
-                console.log(nftAtIndex);
-                
+
                 for(let index = 0; index < nftAtIndex.length ; index++) {
                     const response = await tokenContract.chickenMap(BigInt(nftAtIndex[index]));
                     temp[index] = (response);
                 }
-
                 
-                console.log(temp);
                 setTokenData(temp);
                 checkWheatAmount();
-                
             } catch(error) {
                 console.log("error: ", error)
             }
@@ -162,7 +161,7 @@ export const TransactionsProvider = ({children}) => {
     const checkWheatAmount = async () => {
         if(window.ethereum){
             try{
-                const response = await tokenContract.wheatInventory(currentAccount);
+                const response = await tokenContract.wheatInventory(acc.current);
                 setWheatBalance(Number(response));
                 console.log("WheatBalance",wheatBalance);
             }
@@ -171,6 +170,10 @@ export const TransactionsProvider = ({children}) => {
             }
         }
     }
+    // useEffect(() => {
+    //   displayNFTByAddress();
+    // }, [currentAccount])
+    
 
     useEffect(() => {
         checkIfWalletIsConnected();

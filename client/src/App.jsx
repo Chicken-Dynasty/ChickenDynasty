@@ -2,7 +2,7 @@ import React,{ useState,useContext} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Navbar} from "./components";
-import { TransactionsProvider } from './context/transactionContext';
+import { TransactionsProvider } from './context/TransactionContext';
 import Hatch from './components/Hatch';
 import {BrowserRouter as Router,Route,Link, Routes} from "react-router-dom";
 import Welcome from './components/Welcome';
