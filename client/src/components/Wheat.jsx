@@ -1,5 +1,5 @@
 import React,{useContext, useState , useRef} from "react";
-import { TransactionContext } from "../context/transactionContext";
+import { TransactionContext } from "../context/TransactionContext";
 
 const Wheat = () => {
     const {buyWheat} = useContext(TransactionContext);

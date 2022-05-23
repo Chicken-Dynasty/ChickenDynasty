@@ -1,7 +1,7 @@
 import React,{useContext, useState} from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
-import { TransactionContext } from "../context/transactionContext";
+import { TransactionContext } from "../context/TransactionContext";
 import {Link} from "react-router-dom";
 
 // import logo from "../../images/logo.png";
