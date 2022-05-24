@@ -18,20 +18,24 @@ export const TransactionsProvider = ({children}) => {
     const [wheatBalance, setWheatBalance] = useState("");
     const acc = useRef("");
 
-    const provider = new ethers.providers.Web3Provider(ethereum);
-    const signer = provider.getSigner();
-    const tokenContract = new ethers.Contract(
-        tokenContractAddress,
-        tokenABI,
-        signer
-    );
+    if(!ethereum){
+        alert("Please install metamask");
+    }
+    else{
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        var tokenContract = new ethers.Contract(
+            tokenContractAddress,
+            tokenABI,
+            signer
+        );
 
-    const eggCoinContract = new ethers.Contract(
-        eggContractAddress,
-        eggABI,
-        signer
-    );
-
+        var eggCoinContract = new ethers.Contract(
+            eggContractAddress,
+            eggABI,
+            signer
+        );
+    }
 
     const checkIfWalletIsConnected = async () => {
         if(!ethereum) return alert("Please install metamask");
