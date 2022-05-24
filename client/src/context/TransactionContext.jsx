@@ -84,6 +84,8 @@ export const TransactionsProvider = ({children}) => {
             try {
                 console.log('collecting egg of: ',id);
                 const response = await tokenContract.claimReward(BigInt(id));
+                await response.wait()
+                await displayNFTByAddress();
                 console.log('response: ', response);
 
             } catch (error) {
@@ -109,9 +111,11 @@ export const TransactionsProvider = ({children}) => {
         if(window.ethereum){
             try {
                 const approval = await tokenContract.approve(transferAddress,BigInt(id));
-                approval.wait();
+                await approval.wait();
                 const response = await tokenContract["safeTransferFrom(address,address,uint256)"](currentAccount,transferAddress,BigInt(id));
-                response.wait();
+                await response.wait();
+                await displayNFTByAddress();
+
                 console.log('response: ', response);
 
             } catch (error) {
