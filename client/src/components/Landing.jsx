@@ -10,20 +10,7 @@ const Landing = () => {
     return(
         <div className="grid place-items-center h-screen bg-farm">
             <h1 className="font-bold text-4xl text-black ml-20 mt-10">Cryptocurrencies</h1>
-            {/* <div className="mt-10">
-                <CoinLineChart/>
-            </div>
-            <div className="mt-10">
-                <BarChart/>
-            </div>
-            <div className="mt-10">
-                <PieChart/>
-            </div>
-            <div className="mt-10">
-                <LineChart/>
-            </div> */}
-
-            <div className="carousel w-1/2 ml-20 mb-0">
+            <div className="flex carousel w-auto ml-20 mb-0">
                 <div id="item1" className="carousel-item grid plac-items-center w-full ">
                     <CoinLineChart/>
                 </div> 
@@ -43,7 +30,6 @@ const Landing = () => {
                 <a href="#item3" className="btn btn-sm">3</a> 
                 <a href="#item4" className="btn btn-sm">4</a>
             </div>
-
         </div>
 
     
