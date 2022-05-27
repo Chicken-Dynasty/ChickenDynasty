@@ -7,8 +7,8 @@ export const TransactionContext = React.createContext();
 
 const {ethereum} = window;
 
-const tokenContractAddress = "0xBd113ce0D2f9fCa568c22d28c526505DFaFB56DB";
-const eggContractAddress = "0xcF3bf376f4c7910c0BB0F1Afb66c392C86BA0aa7";
+const tokenContractAddress = "0xDdB18301DffD92266bb1fcE279B9669a9cfd8468";
+const eggContractAddress = "0xFd6E4f754F41820DB3a1B1BeaA65BFFED1cb17e3";
 
 
 export const TransactionsProvider = ({children}) => {
